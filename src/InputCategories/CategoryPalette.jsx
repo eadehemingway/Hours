@@ -25,13 +25,8 @@ export function CategoryPalette({ palette_data, updatePalettes, palette_index })
         setCategories(new_category_list);
     }
 
-    function unmount(){
-        updatePalettes(palette_index, categories);
-    }
-
-
     useEffect(()=>{
-        return unmount;
+        updatePalettes(palette_index, categories);
     }, [categories]);
 
     return (

@@ -11,7 +11,7 @@ import { Tab } from "@headlessui/react";
 
 export function InputCategories({ setCategoryPalette }) {
     const [category_palettes, setCategoryPalettes] = useState(preset_lists);
-    const [selected_palette, setSelectedPalette] = useState(null);
+    const [selected_palette, setSelectedPalette] = useState(preset_lists[0]);
 
     function updatePalettes(palette_index, updated_categories){
         const new_palettes_arr = [...category_palettes];
@@ -21,15 +21,18 @@ export function InputCategories({ setCategoryPalette }) {
 
     function submit(){
         const category_palette = selected_palette.categories.map(d => d.category);
-        console.log("category_palette:", category_palette);
         setCategoryPalette(category_palette);
+    }
+
+    function onChangeTab(index){
+        setSelectedPalette(category_palettes[index]);
     }
 
     return (
         <Section>
             <SectionHeader>CATEGORIES</SectionHeader>
             <Tab.Group
-                onChange={(index) =>  setSelectedPalette(category_palettes[index])}
+                onChange={(index) =>  onChangeTab(index)}
             >
                 <Tab.List >
                     {category_palettes.map((list, i) => <TabLabel label={list.name} key={i} />)}
