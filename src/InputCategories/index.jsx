@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { CategoryPalette } from  "./CategoryPalette";
 import { preset_lists } from "./default_lists";
-import { Section, SectionHeader } from "../shared_styles";
+import { Section, SectionHeader, SelectedTab, UnselectedTab } from "../shared_styles";
 import { Tab } from "@headlessui/react";
 
 
@@ -28,9 +28,7 @@ export function InputCategories({ setCategoryPalette }) {
     return (
         <Section>
             <SectionHeader>CATEGORIES</SectionHeader>
-            <Tab.Group
-                onChange={onChangeTab}
-            >
+            <Tab.Group onChange={onChangeTab} >
                 <Tab.List >
                     {category_palettes.map((list, i) => <TabLabel label={list.name} key={i} />)}
                 </Tab.List>
@@ -46,7 +44,6 @@ export function InputCategories({ setCategoryPalette }) {
                             />
                         </Tab.Panel>
                     ))}
-
                 </Tab.Panels>
             </Tab.Group>
             <button onClick={submit}>Submit</button>
@@ -74,22 +71,3 @@ export  function TabLabel({ label }) {
     );
 }
 
-const SelectedTab= styled.button`
-  background: none;
-  border: 1px solid;
-  border-bottom: none;
-  padding: 20px;
-cursor: pointer;
-
-
-`;
-const UnselectedTab= styled.button`
-  background: none;
-  border: 1px solid;
-
-  padding: 20px;
-cursor: pointer;
-
-
-
-`;

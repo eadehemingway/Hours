@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { fillHours, emptyHours, FILLED, UNFILLED } from "./hours";
 import { Tab } from "@headlessui/react";
 import styled from "styled-components";
+import { SelectedTab, UnselectedTab } from "../shared_styles";
 
 export  function TabLabel({ day_label, day_data_arr, i }) {
 
@@ -36,23 +37,3 @@ const IncompleteLabel = styled.div`
   margin-bottom: 10px;
 `;
 
-
-const SelectedTab= styled.button`
-  background: none;
-  border: 1px solid;
-  border-bottom: none;
-  padding: 20px;
-cursor: pointer;
-
-
-`;
-const UnselectedTab= styled.button`
-  background: none;
-  border: 1px solid;
-
-  padding: 20px;
-cursor: pointer;
-
-
-
-`;

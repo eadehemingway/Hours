@@ -4,11 +4,6 @@ import styled from "styled-components";
 let section_colour = "#D9D0BD";
 
 
-export const BlankPageHeader = styled.h1`
-font-size: 10rem;
-color: red;
-`;
-
 
 export const Section = styled.section`
 background: ${section_colour};
@@ -37,4 +32,20 @@ padding-top: 0px;
 height: 100vh;
 justify-content: center;
 align-items: center;
+`;
+
+export const SelectedTab= styled.button`
+  background: none;
+  border: 1px solid;
+  border-bottom: none;
+  padding: 20px;
+cursor: pointer;
+
+
+`;
+export const UnselectedTab= styled.button`
+  background: none;
+  border: 1px solid;
+  padding: 20px;
+  cursor: pointer;
 `;

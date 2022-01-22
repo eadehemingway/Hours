@@ -18,7 +18,6 @@ export function CategoryPalette({ palette_data, updatePalettes, palette_index })
         const new_category_list = [...categories];
         new_category_list.splice(category_index, 1);
         setCategories(new_category_list);
-
     }
 
     function addNewCategory(){
