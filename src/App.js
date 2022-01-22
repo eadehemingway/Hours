@@ -12,6 +12,7 @@ function App() {
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <Homepage/>
+
       <Description/>
       <InputCategories setCategoryPalette={setCategoryPalette}/>
       <InputHours category_palette={category_palette} setWeekData={setWeekData}/>
