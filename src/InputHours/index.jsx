@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Tab } from "@headlessui/react";
 import { createDay, fillHours, emptyHours, FILLED, UNFILLED, DAYS_ARR } from "./hours";
 import Day from "./Day.jsx";
@@ -6,11 +6,15 @@ import { TabLabel } from "./TabLabel.jsx";
 import { Section, SectionHeader } from "../shared_styles";
 import { dummy_categories } from "../Final/dummy_data";
 import styled from "styled-components";
+import { drawAxis } from "../axis";
 
 
 export function InputHours({ category_palette, setWeekData }) {
     // category_palette = dummy_categories; // for development dummy data
     const [day_data_arr, setDayDataArr] = useState();
+    const $canvas = useRef(null);
+    const window_width = document.body.clientWidth;
+    const window_height = window.innerHeight;
 
     function updateDay(index, new_day_data) {
         const updated = [...day_data_arr];
@@ -23,10 +27,19 @@ export function InputHours({ category_palette, setWeekData }) {
         setDayDataArr(data_arr);
 
     }, [category_palette]);
+
+    useEffect(() => {
+        if (!$canvas) return;
+        const ctx = $canvas.current.getContext("2d");
+        ctx.clearRect(0, 0, 2000, 1200);
+        drawAxis(ctx, 2000, 1200);
+    }, []);
+
     return (
 
         <Section>
             <SectionHeader>TIMESHEET</SectionHeader>
+            <canvas ref={$canvas} width={`${window_width * 2}px`} height={`${window_height * 2}px`} style={{ position: "absolute", width: window_width + "px", height: window_height + "px" }}></canvas>
             {day_data_arr &&
     <>
         <Tab.Group>
