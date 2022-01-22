@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { Header } from "./Header";
 import { Lists } from "./Lists";
 import { Categories } from  "./Categories";
 import { ColumnThree } from "./general_styles";
 import { preset_lists } from "./default_lists";
 import { Section, SectionHeader } from "../shared_styles";
+import { Tab } from "@headlessui/react";
+
 
 export function InputCategories({ setCategoryPalette }) {
     const [edited_lists, setEditedLists] = useState(preset_lists);
+    console.log("edited_lists:", edited_lists);
     const [selected_list, setSelectedList] = useState(null);
     const [selected_list_index, setSelectedListIndex] = useState(null);
 
@@ -32,9 +36,67 @@ export function InputCategories({ setCategoryPalette }) {
     return (
         <Section>
             <SectionHeader>CATEGORIES</SectionHeader>
-            <Lists chooseList = {chooseList} data = {edited_lists}/>
-            {selected_list ? <Categories chooseList = {chooseList} updateCategories = {updateCategories} list_index = {selected_list_index} data = {selected_list}/> : <ColumnThree/>}
+            <Tab.Group>
+                <Tab.List >
+                    {edited_lists.map((list, i) => <TabLabel label={list.name} key={i} />)}
+                </Tab.List>
+
+                <Tab.Panels >
+
+                    {edited_lists.map((list, i)=>(
+                        <Tab.Panel key={i}>
+                            <Categories
+                                chooseList={chooseList}
+                                updateCategories={updateCategories}
+                                list_index={selected_list_index}
+                                data ={list}
+                            />
+                        </Tab.Panel>
+                    ))}
+
+                </Tab.Panels>
+            </Tab.Group>
             <button onClick={submit}>Submit</button>
         </Section>
     );
 }
+
+export  function TabLabel({ label }) {
+    return (
+        <>
+            <Tab as={React.Fragment}>
+                {({ selected }) => (
+                    selected ? (
+                        <SelectedTab>
+                            {label}
+                        </SelectedTab>)
+
+                        : <UnselectedTab>
+                            {label}
+                        </UnselectedTab>
+                )}
+            </Tab>
+        </>
+
+    );
+}
+
+const SelectedTab= styled.button`
+  background: none;
+  border: 1px solid;
+  border-bottom: none;
+  padding: 20px;
+cursor: pointer;
+
+
+`;
+const UnselectedTab= styled.button`
+  background: none;
+  border: 1px solid;
+
+  padding: 20px;
+cursor: pointer;
+
+
+
+`;

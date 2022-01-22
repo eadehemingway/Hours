@@ -27,8 +27,19 @@ export function CategoryItem({ data, updateCategories, list_index, array_index }
 
     return (
         <ListName>
-            <MinusIcon updateCategories = {updateCategories} list_index = {list_index} array_index = {array_index} />
-            <EditableSpan ref = {ref} suppressContentEditableWarning={true} contentEditable = {data.editable} onKeyPress = {handleInput} onBlur = {handleBlur}>{data.category}</EditableSpan>
+            <MinusIcon
+                updateCategories = {updateCategories}
+                list_index = {list_index}
+                array_index = {array_index}
+            />
+            <EditableSpan
+                ref = {ref}
+                suppressContentEditableWarning={true}
+                contentEditable = {data.editable}
+                onKeyPress = {handleInput}
+                onBlur = {handleBlur}>
+                {data.category}
+            </EditableSpan>
         </ListName>
     );
 }

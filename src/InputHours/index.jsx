@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import { createDay, fillHours, emptyHours, FILLED, UNFILLED, DAYS_ARR } from "./hours";
 import Day from "./Day.jsx";
 import { TabLabel } from "./TabLabel.jsx";
-import { useEffect } from "react/cjs/react.development";
 import { Section, SectionHeader } from "../shared_styles";
 import { dummy_categories } from "../Final/dummy_data";
 import styled from "styled-components";
@@ -35,21 +34,17 @@ export function InputHours({ category_palette, setWeekData }) {
                 {DAYS_ARR.map((day_label, i) => <TabLabel day_label={day_label} day_data_arr={day_data_arr} i={i} key={i}/>)}
             </Tab.List>
 
-            <TabContent >
+            <Tab.Panels >
                 {day_data_arr.map((day_data, i) => (
                     <Tab.Panel key={i}>
                         <Day day_index={i} day_data={day_data} updateDay={updateDay} category_palette={category_palette} />
                     </Tab.Panel>
                 ))}
-            </TabContent>
+            </Tab.Panels>
         </Tab.Group>
         <button onClick={()=> setWeekData(day_data_arr)}>DONE</button>
     </>}
         </Section>
     );
 }
-
-const TabContent = styled(Tab.Panels)`
-  border-radius: 4px;
-`;
 
