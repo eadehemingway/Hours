@@ -4,14 +4,6 @@ export let lighter_shade = "#fffaf3";
 
 
 
-export const ListName = styled.div`
-  padding: 10px 40px 10px 40px;
-  cursor: pointer;
-  vertical-align: top;
-  position: ${props => props.position || "static"};
-  bottom: ${props => props.bottom || null};
-`;
-
 export const IconWrapper = styled.div`
   cursor: pointer;
   width: 40px;

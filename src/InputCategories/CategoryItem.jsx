@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ListName } from "./general_styles";
 import { MinusIcon } from "./MinusIcon";
 import { useRef, useEffect } from "react";
 
@@ -29,7 +28,7 @@ export function CategoryItem({ category_obj, editCategory, removeCategory, categ
     }
 
     return (
-        <ListName>
+        <CategoryTile>
             <MinusIcon
                 handleClick= {handleRemove}
             />
@@ -41,6 +40,13 @@ export function CategoryItem({ category_obj, editCategory, removeCategory, categ
                 onBlur = {handleBlur}>
                 {category_obj.category}
             </EditableSpan>
-        </ListName>
+        </CategoryTile>
     );
 }
+
+export const CategoryTile = styled.div`
+  border: 1px solid red;
+  cursor: pointer;
+  padding: 50px;
+
+`;

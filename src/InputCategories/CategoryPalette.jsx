@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CategoryItem } from "./CategoryItem";
 import styled from "styled-components";
-import { ListName } from "./general_styles";
+import { CategoryTile } from "./CategoryItem";
 import { PlusIcon } from "./PlusIcon";
 
 
@@ -39,16 +39,20 @@ export function CategoryPalette({ palette_data, updatePalettes, palette_index })
                 editCategory={editCategory}
                 removeCategory ={removeCategory}
             />)}
-            <ListName >
+            <CategoryTile >
                 <PlusIcon
                     handleClick = {addNewCategory}
                 />
                 <span>{"Add new"}</span>
-            </ListName>
+            </CategoryTile>
         </TabContents>
     );
 }
 
 const TabContents = styled.div`
  padding: 50px;
+ display: grid;
+ grid-template-columns: repeat(5, 1fr);
 `;
+
+
