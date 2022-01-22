@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import cs from "classnames";
-import { UNFILLED } from "./hours";
+import { fillHours, emptyHours, FILLED, UNFILLED } from "./hours";
+import styled from "styled-components";
 
 export  function Aggregate({ ag_data}) {
 
   return (
-    <div
-    className={cs({
-      "text-red-700 h-12 flex justify-center items-center border mt-10": true,
-      "bg-blue-500 text-white": ag_data !== UNFILLED,
-    })}
-  />
+    <AggregateCell filled={ag_data !== UNFILLED}/>
 
   );
 }
+
+
+const AggregateCell = styled.div`
+  border: 1px solid black;
+  height: 30px;
+  background: ${({filled})=> filled ? "blue" : null }
+
+`

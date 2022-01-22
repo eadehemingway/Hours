@@ -1,32 +1,51 @@
 import React, { useState } from "react";
-import cs from "classnames";
 import { fillHours, emptyHours, FILLED, UNFILLED } from "./hours";
 import { Tab } from "@headlessui/react";
+import styled from "styled-components";
 
 export  function TabLabel({ day_label, day_data_arr, i}) {
 
   return (
-    <Tab
+    <TabWrapper
     key={day_label}
-    className={({ selected }) =>
-      cs({
-        "border-t border-r border-l rounded-t-lg px-3 py-1": true,
-        "border-b": !selected,
-      })
+    className={({ selected }) => {
+    return selected ? "no-border-bottom" : 'border-bottom'
+    }
     }
   >
-    <div className="flex flex-col items-center">
+    <TextWrapper>
       <div>{day_label}</div>
 
-      <div className="h-4 text-xs text-red-500 mb-1">
+      <IncompleteLabel >
         {Object.values(day_data_arr[i].aggregate).some(
           (agg) => agg === UNFILLED
         )
           ? "(incomplete)"
           : ""}
-      </div>
-    </div>
-  </Tab>
+      </IncompleteLabel>
+    </TextWrapper>
+  </TabWrapper>
 
   );
 }
+
+
+const IncompleteLabel = styled.div`
+  font-size: 0.5rem;
+  color: red;
+  margin-bottom: 10px;
+`
+
+const TextWrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+`
+
+const TabWrapper= styled(Tab)`
+border-top: 2px solid;
+border-left: 2px solid;
+border-right: 2px solid;
+
+
+`

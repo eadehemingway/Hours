@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import cs from "classnames";
 import { fillHours, emptyHours, FILLED, UNFILLED, HOURS_ARR } from "./hours";
 import { HourLabels } from './HourLabels'
 import { Aggregate } from "./Aggregate";
 import { Row } from "./Row";
+import styled from "styled-components";
 
 
 export default function Day({ day_data, day_index, updateDay}) {
@@ -68,7 +68,7 @@ export default function Day({ day_data, day_index, updateDay}) {
 
   return (
     <div>
-      <div className="grid grid-cols-[auto,repeat(24,_minmax(0,_1fr))]">
+      <DayGrid >
         <div />
         {HOURS_ARR.map((_, i) => <HourLabels key={i} index={i}/>)}
 
@@ -83,7 +83,13 @@ export default function Day({ day_data, day_index, updateDay}) {
 
         <div />
         {HOURS_ARR.map((_, i) => <Aggregate key={i}  ag_data={day_data.aggregate[i]}/>)}
-      </div>
+      </DayGrid>
     </div>
   );
 }
+
+const DayGrid = styled.div`
+  display: grid;
+  grid-template-columns: auto repeat(24,minmax(0,1fr));
+
+`

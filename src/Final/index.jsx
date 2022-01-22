@@ -1,8 +1,9 @@
 
 import styled from 'styled-components'
 import { useEffect, useRef, useState } from "react";
-import { Section } from '../shared_styles'
+import { Section, SectionHeader } from '../shared_styles'
 import { dummy_data , dummy_categories} from "./dummy_data";
+
 export  function FinalViz({week_data, category_palette}) {
 
   const [data, setData] = useState()
@@ -69,10 +70,10 @@ export  function FinalViz({week_data, category_palette}) {
     }
   return (
     <Section>
-      <img href={wood}/>
-        {/* <SectionHeader>HOURS</SectionHeader>
+      {/* <img href={wood}/> */}
+        <SectionHeader>HOURS</SectionHeader>
           <canvas ref={$canvas}id="myCanvas" width="1000" height="450" style={{border:"1px solid #000000"}}></canvas>
-        <DownloadButton onClick={download}>Download!</DownloadButton> */}
+        <DownloadButton onClick={download}>Download!</DownloadButton>
     </Section>
   );
 }

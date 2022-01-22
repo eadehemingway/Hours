@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import cs from "classnames";
 import { fillHours, emptyHours, FILLED, UNFILLED, HOURS_ARR } from "./hours";
 import { Tab } from "@headlessui/react";
 import { GridCell } from "./GridCell";
+import styled from "styled-components";
 
 export  function Row(props) {
 
   return (
     <React.Fragment key={props.cat.name}>
-    <div className="text-xs flex justify-end items-center px-2">
+    <CategoryLabel>
       {props.cat.name}
-    </div>
+    </CategoryLabel>
     {HOURS_ARR.map((_, hours_index) => (
       <GridCell
         {...props}
@@ -23,3 +23,12 @@ export  function Row(props) {
 
   );
 }
+
+const CategoryLabel = styled.h3`
+font-size: 1rem;
+display: flex;
+justify-content: end;
+align-items: center;
+padding-right: 10px;
+
+`

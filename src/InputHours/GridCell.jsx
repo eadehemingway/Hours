@@ -1,21 +1,15 @@
 import React, { useState } from "react";
-import cs from "classnames";
-import {  FILLED } from "./hours";
-
+import { fillHours, emptyHours, FILLED, UNFILLED } from "./hours";
+import styled from "styled-components";
 
 export  function GridCell({ cat, hours_index, startDragging, onDraggedOver, endDragging, isPending}) {
+const is_already_filled = cat[hours_index] === FILLED
+const is_pending = isPending(cat.name, hours_index)
   return (
-    <div
-    className={cs({
-      "text-blue-700 h-12 flex justify-center items-center border": true,
-      "bg-red-100 text-white ":
-        cat[hours_index] === FILLED && isPending(cat.name, hours_index),
-      "bg-red-100 text-white": isPending(cat.name, hours_index),
-      "bg-red-500 text-white":
-        cat[hours_index] === FILLED && !isPending(cat.name, hours_index),
-    })}
+    <Cell is_pending={is_pending} is_already_filled={is_already_filled}
+
     onMouseDown={(e) => {
-      e.preventDefault();
+      e.preventDefault()
       startDragging({ category: cat.name, hour: hours_index });
     }}
     onMouseOver={() =>
@@ -28,3 +22,14 @@ export  function GridCell({ cat, hours_index, startDragging, onDraggedOver, endD
 
   );
 }
+
+const Cell = styled.div`
+  border: 1px solid black;
+  height: 50px;
+  background: ${({is_already_filled, is_pending})=>{
+    if (is_pending) return "pink"
+    if (is_already_filled && !is_pending) return "red"
+    else return null
+
+  }}
+`
