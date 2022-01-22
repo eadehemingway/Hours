@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 
-export  function HourLabels({ index}) {
+export  function HourLabels({ index }) {
 
-  return (
-          <HourLabel >
+    return (
+        <HourLabel >
             {index % 12 ? index % 12 : 12}
             <span>{index > 11 ? "pm" : "am"}</span>
-          </HourLabel>
+        </HourLabel>
 
-  );
+    );
 }
 
 
@@ -21,4 +21,4 @@ margin-top: 20px;
 border-radius: 4px;
 font-size: 10px;
 
-`
+`;

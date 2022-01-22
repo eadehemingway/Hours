@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import { ColumnHeader, darker_shade } from "./general_styles";
 import { ListItem } from "./ListItem";
 
 
-export function Lists({chooseList, data}) {
+export function Lists({ chooseList, data }) {
     return (
-      <ColumnTwo className="list-wrapper">
-        <ColumnHeader>Preset lists</ColumnHeader>
-        {data.map((d, i) => <ListItem data = {d} list_i = {i} key = {`list_${i}`} chooseList = {chooseList}/>)}
-      </ColumnTwo>
+        <ColumnTwo className="list-wrapper">
+            <ColumnHeader>Preset lists</ColumnHeader>
+            {data.map((d, i) => <ListItem data = {d} list_i = {i} key = {`list_${i}`} chooseList = {chooseList}/>)}
+        </ColumnTwo>
     );
 }
 

@@ -1,4 +1,4 @@
-export const dummy_categories = ['Work', 'Sleep', 'Tasks', 'Socialising', 'Learning', 'Making']
+export const dummy_categories = ["Work", "Sleep", "Tasks", "Socialising", "Learning", "Making"];
 
 export const dummy_data =[
     {
@@ -1345,4 +1345,4 @@ export const dummy_data =[
             "23": "Sleep"
         }
     }
-]
+];

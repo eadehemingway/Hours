@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 export let darker_shade = "#fff3de";
 export let lighter_shade = "#fffaf3";
 

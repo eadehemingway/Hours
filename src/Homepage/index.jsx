@@ -1,9 +1,9 @@
-import { SectionHeaderGrand, Section } from '../shared_styles'
+import { SectionHeaderGrand, Section } from "../shared_styles";
 
 export function Homepage() {
     return (
-      <Section>
-          <SectionHeaderGrand>HOURS</SectionHeaderGrand>
-      </Section>
+        <Section>
+            <SectionHeaderGrand>HOURS</SectionHeaderGrand>
+        </Section>
     );
 }

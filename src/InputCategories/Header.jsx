@@ -1,15 +1,15 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import { lighter_shade } from "./general_styles";
 
 
 
 export function Header() {
     return (
-      <ColumnOne>
-        <SectionHeader>Categories of spending</SectionHeader>
-        <SectionSubHeader>Choose and edit a preset list or create your own</SectionSubHeader>
-      </ColumnOne>
-    )
+        <ColumnOne>
+            <SectionHeader>Categories of spending</SectionHeader>
+            <SectionSubHeader>Choose and edit a preset list or create your own</SectionSubHeader>
+        </ColumnOne>
+    );
 }
 
 const ColumnOne = styled.div`
