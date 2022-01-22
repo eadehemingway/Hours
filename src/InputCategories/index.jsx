@@ -13,22 +13,24 @@ export function InputCategories({ setCategoryPalette }) {
     const [category_palettes, setCategoryPalettes] = useState(preset_lists);
     const [selected_palette, setSelectedPalette] = useState(null);
 
-    function submit(){
-        const category_palette = selected_palette.categories.map(d => d.category);
-        setCategoryPalette(category_palette);
-    }
-
     function updatePalettes(palette_index, updated_categories){
-
         const new_palettes_arr = [...category_palettes];
         new_palettes_arr[palette_index].categories = updated_categories;
         setCategoryPalettes(new_palettes_arr);
-
     }
+
+    function submit(){
+        const category_palette = selected_palette.categories.map(d => d.category);
+        console.log("category_palette:", category_palette);
+        setCategoryPalette(category_palette);
+    }
+
     return (
         <Section>
             <SectionHeader>CATEGORIES</SectionHeader>
-            <Tab.Group>
+            <Tab.Group
+                onChange={(index) =>  setSelectedPalette(category_palettes[index])}
+            >
                 <Tab.List >
                     {category_palettes.map((list, i) => <TabLabel label={list.name} key={i} />)}
                 </Tab.List>

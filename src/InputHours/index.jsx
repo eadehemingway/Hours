@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 
 export function InputHours({ category_palette, setWeekData }) {
-    category_palette = dummy_categories; // for development dummy data
+    // category_palette = dummy_categories; // for development dummy data
     const [day_data_arr, setDayDataArr] = useState();
 
     function updateDay(index, new_day_data) {

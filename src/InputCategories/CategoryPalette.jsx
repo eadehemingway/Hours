@@ -26,7 +26,6 @@ export function CategoryPalette({ palette_data, updatePalettes, palette_index })
     }
 
     function unmount(){
-        console.log("categories:", categories);
         updatePalettes(palette_index, categories);
     }
 
