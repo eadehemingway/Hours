@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Header } from "./Header";
 import { Lists } from "./Lists";
-import { Categories } from  "./Categories";
+import { CategoryPalette } from  "./CategoryPalette";
 import { ColumnThree } from "./general_styles";
 import { preset_lists } from "./default_lists";
 import { Section, SectionHeader } from "../shared_styles";
@@ -10,46 +10,38 @@ import { Tab } from "@headlessui/react";
 
 
 export function InputCategories({ setCategoryPalette }) {
-    const [edited_lists, setEditedLists] = useState(preset_lists);
-    console.log("edited_lists:", edited_lists);
-    const [selected_list, setSelectedList] = useState(null);
-    const [selected_list_index, setSelectedListIndex] = useState(null);
-
-    function chooseList(list_i) {
-        setSelectedListIndex(list_i);
-        setSelectedList(edited_lists[list_i]);
-    }
-
-    function updateCategories(action, list_i, array_i, obj) {
-        let lists = [...edited_lists];
-        if (action === "edit") lists[list_i].categories[array_i] = obj;
-        if (action === "add") lists[list_i].categories.push(obj);
-        if (action === "remove") lists[list_i].categories.splice(array_i, 1);
-        setEditedLists(lists);
-    }
-
+    const [category_palettes, setCategoryPalettes] = useState(preset_lists);
+    const [selected_palette, setSelectedPalette] = useState(null);
 
     function submit(){
-        const category_palette = selected_list.categories.map(d => d.category);
+        const category_palette = selected_palette.categories.map(d => d.category);
         setCategoryPalette(category_palette);
+    }
+
+    function updatePalettes(palette_index, updated_categories){
+
+        const new_palettes_arr = [...category_palettes];
+        new_palettes_arr[palette_index].categories = updated_categories;
+        setCategoryPalettes(new_palettes_arr);
+
     }
     return (
         <Section>
             <SectionHeader>CATEGORIES</SectionHeader>
             <Tab.Group>
                 <Tab.List >
-                    {edited_lists.map((list, i) => <TabLabel label={list.name} key={i} />)}
+                    {category_palettes.map((list, i) => <TabLabel label={list.name} key={i} />)}
                 </Tab.List>
 
                 <Tab.Panels >
 
-                    {edited_lists.map((list, i)=>(
+                    {category_palettes.map((palette_data, i)=>(
                         <Tab.Panel key={i}>
-                            <Categories
-                                chooseList={chooseList}
-                                updateCategories={updateCategories}
-                                list_index={selected_list_index}
-                                data ={list}
+                            <CategoryPalette
+                                updatePalettes={updatePalettes}
+                                palette_index={i}
+                                palette_data ={palette_data}
+
                             />
                         </Tab.Panel>
                     ))}

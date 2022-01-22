@@ -7,7 +7,7 @@ const EditableSpan = styled.span`
   &:focus {outline: none;};
 `;
 
-export function CategoryItem({ data, updateCategories, list_index, array_index }) {
+export function CategoryItem({ category_obj, editCategory, removeCategory, category_index }) {
 
     const ref = useRef(null);
 
@@ -17,28 +17,29 @@ export function CategoryItem({ data, updateCategories, list_index, array_index }
 
     function handleInput(d) {
         if (d.charCode === 13) {
-            updateCategories("edit", list_index, array_index, { category: d.target.innerHTML, editable: false });
+            editCategory(category_index, { category: d.target.innerHTML, editable: false });
         }
     }
 
     function handleBlur(d) {
-        updateCategories("edit", list_index, array_index, { category: d.target.innerHTML, editable: false });
+        editCategory(category_index, { category: d.target.innerHTML, editable: false });
     }
+
+
 
     return (
         <ListName>
             <MinusIcon
-                updateCategories = {updateCategories}
-                list_index = {list_index}
-                array_index = {array_index}
+                removeCategory = {removeCategory}
+                category_index={category_index}
             />
             <EditableSpan
                 ref = {ref}
                 suppressContentEditableWarning={true}
-                contentEditable = {data.editable}
+                contentEditable = {category_obj.editable}
                 onKeyPress = {handleInput}
                 onBlur = {handleBlur}>
-                {data.category}
+                {category_obj.category}
             </EditableSpan>
         </ListName>
     );
