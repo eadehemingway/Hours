@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { AddCategory } from "./AddCategory";
 import { CategoryItem } from "./CategoryItem";
-import { ColumnHeader, ColumnThree } from "./general_styles";
+import styled from "styled-components";
+import { ListName } from "./general_styles";
+import { PlusIcon } from "./PlusIcon";
+
 
 export function CategoryPalette({ palette_data, updatePalettes, palette_index }) {
     const [categories, setCategories] = useState(palette_data.categories);
@@ -30,8 +32,7 @@ export function CategoryPalette({ palette_data, updatePalettes, palette_index })
     }, [categories]);
 
     return (
-        <ColumnThree>
-            <ColumnHeader>{palette_data.name}</ColumnHeader>
+        <TabContents>
             {categories.map((d, i) => <CategoryItem
                 key={i}
                 category_obj={d}
@@ -39,10 +40,16 @@ export function CategoryPalette({ palette_data, updatePalettes, palette_index })
                 editCategory={editCategory}
                 removeCategory ={removeCategory}
             />)}
-
-            <AddCategory
-                addNewCategory = {addNewCategory}
-            />
-        </ColumnThree>
+            <ListName >
+                <PlusIcon
+                    handleClick = {addNewCategory}
+                />
+                <span>{"Add new"}</span>
+            </ListName>
+        </TabContents>
     );
 }
+
+const TabContents = styled.div`
+ padding: 50px;
+`;

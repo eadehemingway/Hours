@@ -8,7 +8,6 @@ const EditableSpan = styled.span`
 `;
 
 export function CategoryItem({ category_obj, editCategory, removeCategory, category_index }) {
-
     const ref = useRef(null);
 
     useEffect(() => {
@@ -25,13 +24,14 @@ export function CategoryItem({ category_obj, editCategory, removeCategory, categ
         editCategory(category_index, { category: d.target.innerHTML, editable: false });
     }
 
-
+    function handleRemove(){
+        removeCategory(category_index);
+    }
 
     return (
         <ListName>
             <MinusIcon
-                removeCategory = {removeCategory}
-                category_index={category_index}
+                handleClick= {handleRemove}
             />
             <EditableSpan
                 ref = {ref}

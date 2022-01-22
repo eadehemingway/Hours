@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Header } from "./Header";
-import { Lists } from "./Lists";
 import { CategoryPalette } from  "./CategoryPalette";
-import { ColumnThree } from "./general_styles";
 import { preset_lists } from "./default_lists";
 import { Section, SectionHeader } from "../shared_styles";
 import { Tab } from "@headlessui/react";
@@ -32,14 +29,13 @@ export function InputCategories({ setCategoryPalette }) {
         <Section>
             <SectionHeader>CATEGORIES</SectionHeader>
             <Tab.Group
-                onChange={(index) =>  onChangeTab(index)}
+                onChange={onChangeTab}
             >
                 <Tab.List >
                     {category_palettes.map((list, i) => <TabLabel label={list.name} key={i} />)}
                 </Tab.List>
 
                 <Tab.Panels >
-
                     {category_palettes.map((palette_data, i)=>(
                         <Tab.Panel key={i}>
                             <CategoryPalette
