@@ -38,7 +38,7 @@ export function CategoryItem({ category_obj, editCategory, removeCategory, categ
             <MinusIcon
                 handleClick= {handleRemove}
             />
-            <EditableSpan
+            <EditableInput
                 ref = {ref}
                 suppressContentEditableWarning={true}
                 disabled = {!category_obj.editable}
@@ -49,7 +49,7 @@ export function CategoryItem({ category_obj, editCategory, removeCategory, categ
                 type="text"
                 editable = {category_obj.editable}
             />
-            <EditableSpan
+            <EditableTextarea
                 ref = {ref}
                 suppressContentEditableWarning={true}
                 disabled = {!category_obj.editable}
@@ -79,8 +79,16 @@ export const CategoryTile = styled.div`
 `;
 
 
-const EditableSpan = styled.input`
+const EditableInput = styled.input`
     &:focus {outline: none;};
     background: none;
     border: ${props=> props.editable ? "1px solid": "none"}
+`;
+
+const EditableTextarea = styled.textarea`
+&:focus {outline: none;};
+background: none;
+border: ${props=> props.editable ? "1px solid": "none"};
+min-height: 100px;
+
 `;
