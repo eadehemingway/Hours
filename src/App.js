@@ -16,7 +16,7 @@ function App() {
             {/* <Description/> */}
             {/* <InputCategories setCategoryPalette={setCategoryPalette}/> */}
             <InputHours category_palette={category_palette} setWeekData={setWeekData} week_data={week_data}/>
-            {/* <FinalViz category_palette={category_palette} week_data={week_data}/> */}
+            <FinalViz category_palette={category_palette} week_data={week_data}/>
 
         </div>
     );

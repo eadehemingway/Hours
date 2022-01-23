@@ -7,8 +7,10 @@ import wood from "../wood.png";
 import { drawAxis } from "../axis";
 
 export  function FinalViz({ week_data, category_palette }) {
-
-    const [data, setData] = useState();
+    week_data=dummy_data; // for dev
+    category_palette = dummy_categories; // for dev
+    const [main_data, setMainData] = useState();
+    const [accumulation_data, setAccumulationData] = useState(); // we can use to do accu
     const $canvas = useRef(null);
     const window_width = document.body.clientWidth;
     const window_height = window.innerHeight;
@@ -19,20 +21,34 @@ export  function FinalViz({ week_data, category_palette }) {
 
 
     useEffect(()=>{
-        const data = dummy_data.map(d=> d.aggregate);
-        setData(data);
+        const aggregate_data = week_data.map(d=> d.aggregate);
+        setMainData(aggregate_data);
 
-    },[]);
+        const aggregates_values = aggregate_data.map(d=> Object.values(d)).flat();
+        let acc_data = [];
+        category_palette.forEach(c=> {
+            let indices = [];
+            let idx = aggregates_values.indexOf(c);
+            while (idx !== -1) {
+                indices.push(idx);
+                idx = aggregates_values.indexOf(c, idx + 1);
+            }
+            const cat_accumulation = { label: c, total: indices.length };
+            acc_data.push(cat_accumulation);
+        });
+        setAccumulationData(acc_data); // this data can be used to plot accumulative bars...
+
+    },[week_data, category_palette]);
 
     useEffect(()=>{
         if (!$canvas) return;
-        if (!data) return;
+        if (!main_data) return;
         const ctx = $canvas.current.getContext("2d");
 
-        data.forEach((day_data, day_index)=>{
+        main_data.forEach((day_data, day_index)=>{
             drawRow(ctx, day_index, day_data);
         });
-    }, [data]);
+    }, [main_data]);
 
     function download(){
         var canvas = $canvas.current;

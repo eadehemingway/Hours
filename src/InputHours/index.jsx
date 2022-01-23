@@ -54,21 +54,8 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
             // highlight missing bits in tabs
             setHighlightMissingData(true);
         }else {
-        // structure data so that it can be used in accumulative bar chart...
-            const aggregates = week_data.map(d=> Object.values(d.aggregate)).flat();
-            let acc_data = [];
+            // navigate to next page
 
-            category_palette.forEach(c=> {
-                let indices = [];
-                let idx = aggregates.indexOf(c);
-                while (idx !== -1) {
-                    indices.push(idx);
-                    idx = aggregates.indexOf(c, idx + 1);
-                }
-                const cat_accumulation = { label: c, total: indices.length };
-                acc_data.push(cat_accumulation);
-            });
-            console.log(acc_data); // this data can be used to plot accumulative bars...
 
         }
     }
