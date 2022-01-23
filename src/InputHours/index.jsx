@@ -10,8 +10,8 @@ import { drawAxis } from "../axis";
 
 
 export function InputHours({ category_palette, setWeekData, week_data }) {
+    // category_palette = dummy_categories; // for development dummy data
     const [highlight_missing_data, setHighlightMissingData] = useState(false);
-    category_palette = dummy_categories; // for development dummy data
     const $canvas = useRef(null);
     const window_width = document.body.clientWidth;
     const window_height = window.innerHeight;

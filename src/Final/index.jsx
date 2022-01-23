@@ -79,11 +79,23 @@ export  function FinalViz({ week_data, category_palette }) {
 
         }
     }
+
+
     return (
         <Section>
             <SectionHeader>HOURS</SectionHeader>
-            {/* <img src={wood}/> */}
-            <canvas ref={$canvas}id="myCanvas" width={window_width * 2} height={window_height * 1.2} style={{ width: window_width, height: window_height * 0.6, position: "absolute", bottom: "40px", left: "0px" }}></canvas>
+            <canvas ref={$canvas}
+                id="myCanvas"
+                width={window_width * 2}
+                height={window_height * 1.2}
+                style={{
+                    width: window_width,
+                    height: window_height * 0.6,
+                    position: "absolute",
+                    bottom: "40px",
+                    left: "0px"
+                }}
+            ></canvas>
             <DownloadButton onClick={download}>Download!</DownloadButton>
         </Section>
     );
