@@ -6,8 +6,10 @@ import { dummy_week_data , dummy_categories } from "../data";
 import { drawAxis } from "../axis";
 
 export  function FinalViz({ week_data, category_palette }) {
-    week_data=dummy_week_data; // for dev
-    category_palette = dummy_categories; // for dev
+
+    // week_data=dummy_week_data; // for dev
+    // category_palette = dummy_categories; // for dev
+
 
     const [main_data, setMainData] = useState();
     const [accumulation_data, setAccumulationData] = useState(); // we can use to do accu
@@ -21,6 +23,7 @@ export  function FinalViz({ week_data, category_palette }) {
 
 
     useEffect(()=>{
+        if (!week_data) return;
         const aggregate_data = week_data.map(d=> d.aggregate);
         setMainData(aggregate_data);
 

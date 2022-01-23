@@ -7,7 +7,6 @@ import { useState } from "react/cjs/react.development";
 
 export function CategoryItem({ category_obj, editCategory, removeCategory, category_index }) {
     const [category_title, setCategoryTitle] = useState("");
-    console.log("category_title:", category_title);
     const [category_description, setCategoryDescription] = useState("");
     const ref = useRef(null);
 

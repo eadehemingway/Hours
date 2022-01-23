@@ -17,7 +17,7 @@ export function InputCategories({ setCategoryPalette }) {
     }
 
     function submit(){
-        const category_palette = selected_palette.categories.map(d => d.category);
+        const category_palette = selected_palette.categories;
         setCategoryPalette(category_palette);
     }
 
