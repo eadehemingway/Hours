@@ -18,7 +18,7 @@ for (let i = 0; i < 24; i++) hours[i] = UNFILLED;
 
 export function createDay({ categories }) {
     return {
-        categories: categories.map((category) => ({ category, ...hours })),
+        categories: categories.map((c) => ({ category: c.category, ...hours })),
         aggregate: { ...hours },
     };
 }
