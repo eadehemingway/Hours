@@ -16,9 +16,9 @@ export  function Row(props) {
 
 
     return (
-        <React.Fragment key={props.cat.name}>
+        <React.Fragment key={props.cat.category}>
             <CategoryLabel ref={$category_label}>
-                {props.cat.name}
+                {props.cat.category}
             </CategoryLabel>
             {HOURS_ARR.map((_, hours_index) => (
                 <GridCell

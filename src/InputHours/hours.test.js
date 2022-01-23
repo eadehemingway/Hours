@@ -17,11 +17,11 @@ test("can create a day", () => {
     expect(day).toEqual({
         categories: [
             {
-                name: "sleep",
+                category: "sleep",
                 ...hours,
             },
             {
-                name: "gym",
+                category: "gym",
                 ...hours,
             },
         ],
@@ -40,13 +40,13 @@ test("can fill hours when all already empty", () => {
     expect(updated).toEqual({
         categories: [
             {
-                name: "sleep",
+                category: "sleep",
                 ...hours,
                 3: FILLED,
                 4: FILLED,
                 5: FILLED,
             },
-            { name: "gym", ...hours },
+            { category: "gym", ...hours },
         ],
 
         aggregate: {
@@ -62,12 +62,12 @@ test("only fills available hours when there is overlap", () => {
     const day = {
         categories: [
             {
-                name: "sleep",
+                category: "sleep",
                 ...hours,
                 3: FILLED,
                 4: FILLED,
             },
-            { name: "gym", ...hours },
+            { category: "gym", ...hours },
         ],
 
         aggregate: {
@@ -82,13 +82,13 @@ test("only fills available hours when there is overlap", () => {
     expect(updated).toEqual({
         categories: [
             {
-                name: "sleep",
+                category: "sleep",
                 ...hours,
                 3: FILLED,
                 4: FILLED,
             },
             {
-                name: "gym",
+                category: "gym",
                 ...hours,
                 2: FILLED,
                 5: FILLED,
@@ -111,14 +111,14 @@ test("can empty out hours", () => {
     const day = {
         categories: [
             {
-                name: "sleep",
+                category: "sleep",
                 ...hours,
                 3: FILLED,
                 4: FILLED,
                 5: FILLED,
                 6: FILLED,
             },
-            { name: "gym", ...hours },
+            { category: "gym", ...hours },
         ],
 
         aggregate: {

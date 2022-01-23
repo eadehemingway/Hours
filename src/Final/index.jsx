@@ -2,12 +2,11 @@
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import { Section, SectionHeader } from "../shared_styles";
-import { dummy_data , dummy_categories } from "../data";
-import wood from "../wood.png";
+import { dummy_week_data , dummy_categories } from "../data";
 import { drawAxis } from "../axis";
 
 export  function FinalViz({ week_data, category_palette }) {
-    week_data=dummy_data; // for dev
+    week_data=dummy_week_data; // for dev
     category_palette = dummy_categories; // for dev
 
     const [main_data, setMainData] = useState();

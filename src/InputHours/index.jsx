@@ -4,13 +4,13 @@ import { createDay, fillHours, emptyHours, FILLED, UNFILLED, DAYS_ARR } from "./
 import Day from "./Day.jsx";
 import { TabLabel } from "./TabLabel.jsx";
 import { Section, SectionInner, SectionHeader } from "../shared_styles";
-import { dummy_categories, dummy_data } from "../data";
+import { dummy_categories, dummy_week_data } from "../data";
 import styled from "styled-components";
 import { drawAxis } from "../axis";
 
 
 export function InputHours({ category_palette, setWeekData, week_data }) {
-    // week_data = dummy_data;
+    // week_data = dummy_week_data;
     category_palette = dummy_categories;
     const [highlight_missing_data, setHighlightMissingData] = useState(false);
     const [category_label_width, setCategoryLabelWidth] = useState(null);

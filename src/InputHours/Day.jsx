@@ -29,7 +29,7 @@ export default function Day({ day_data, day_index, updateDay, setCategoryLabelWi
         let toHour = to.hour > pending_from.hour ? to.hour : pending_from.hour + 1;
 
         for (let play = fromHour; play < toHour; play++) {
-            const cat = day_data.categories.find((c) => c.name === pending_from.category);
+            const cat = day_data.categories.find((c) => c.category === pending_from.category);
             if (cat[play] === UNFILLED) {
                 isAdding = true;
                 break;
@@ -56,26 +56,27 @@ export default function Day({ day_data, day_index, updateDay, setCategoryLabelWi
         let toHour =
       pending_to.hour > pending_from.hour ? pending_to.hour : pending_from.hour + 1;
 
-        return (
-            pending_from?.category === category_name &&
+        const is_pending = pending_from?.category === category_name &&
       hour >= fromHour &&
-      hour < toHour
-        );
+      hour < toHour;
+        return is_pending;
+
     }
 
 
     return (
         <div>
             <DayGrid>
-                {day_data.categories.map((cat, i) => ( <Row
-                    cat={cat}
-                    key={i}
-                    startDragging={startDragging}
-                    onDraggedOver={onDraggedOver}
-                    endDragging={endDragging}
-                    isPending={isPending}
-                    setCategoryLabelWidth={setCategoryLabelWidth}
-                /> ))}
+                {day_data.categories.map((cat, i) => (
+                    <Row
+                        cat={cat}
+                        key={i}
+                        startDragging={startDragging}
+                        onDraggedOver={onDraggedOver}
+                        endDragging={endDragging}
+                        isPending={isPending}
+                        setCategoryLabelWidth={setCategoryLabelWidth}
+                    /> ))}
 
             </DayGrid>
         </div>

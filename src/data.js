@@ -1,7 +1,7 @@
 
-export const preset_lists = [
+export const preset_category_palettes = [
     {
-        name: "General",
+        palette: "General",
         categories: [
             { category: "Work", editable: false, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
             { category: "Sleep", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
@@ -12,7 +12,7 @@ export const preset_lists = [
         ]
     },
     {
-        name: "Making",
+        palette: "Making",
         categories: [
             { category: "Planning project", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
             { category: "Sourcing materials", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
@@ -22,7 +22,7 @@ export const preset_lists = [
         ]
     },
     {
-        name: "Mood",
+        palette: "Mood",
         categories: [
             { category: "Neutral", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
             { category: "Anxious", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
@@ -33,7 +33,7 @@ export const preset_lists = [
         ]
     },
     {
-        name: "Create your own",
+        palette: "Create your own",
         categories: []
     }
 ];
@@ -48,7 +48,7 @@ export const dummy_categories = ["Work", "Sleep", "Tasks", "Socialising", "Learn
 //     { category:  "Making",description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
 // ];
 
-export const dummy_data =[
+export const dummy_week_data =[
     {
         "categories": [
             {
@@ -76,7 +76,7 @@ export const dummy_data =[
                 "21": "filled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Work"
+                "category": "Work"
             },
             {
                 "0": "filled",
@@ -103,7 +103,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Sleep"
+                "category": "Sleep"
             },
             {
                 "0": "unfilled",
@@ -130,7 +130,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Tasks"
+                "category": "Tasks"
             },
             {
                 "0": "unfilled",
@@ -157,7 +157,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Socialising"
+                "category": "Socialising"
             },
             {
                 "0": "unfilled",
@@ -184,7 +184,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Learning"
+                "category": "Learning"
             },
             {
                 "0": "unfilled",
@@ -211,7 +211,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "filled",
                 "23": "filled",
-                "name": "Making"
+                "category": "Making"
             }
         ],
         "aggregate": {
@@ -268,7 +268,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Work"
+                "category": "Work"
             },
             {
                 "0": "unfilled",
@@ -295,7 +295,7 @@ export const dummy_data =[
                 "21": "filled",
                 "22": "filled",
                 "23": "filled",
-                "name": "Sleep"
+                "category": "Sleep"
             },
             {
                 "0": "unfilled",
@@ -322,7 +322,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Tasks"
+                "category": "Tasks"
             },
             {
                 "0": "unfilled",
@@ -349,7 +349,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Socialising"
+                "category": "Socialising"
             },
             {
                 "0": "unfilled",
@@ -376,7 +376,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Learning"
+                "category": "Learning"
             },
             {
                 "0": "unfilled",
@@ -403,7 +403,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Making"
+                "category": "Making"
             }
         ],
         "aggregate": {
@@ -460,7 +460,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Work"
+                "category": "Work"
             },
             {
                 "0": "filled",
@@ -487,7 +487,7 @@ export const dummy_data =[
                 "21": "filled",
                 "22": "filled",
                 "23": "filled",
-                "name": "Sleep"
+                "category": "Sleep"
             },
             {
                 "0": "unfilled",
@@ -514,7 +514,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Tasks"
+                "category": "Tasks"
             },
             {
                 "0": "unfilled",
@@ -541,7 +541,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Socialising"
+                "category": "Socialising"
             },
             {
                 "0": "unfilled",
@@ -568,7 +568,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Learning"
+                "category": "Learning"
             },
             {
                 "0": "unfilled",
@@ -595,7 +595,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Making"
+                "category": "Making"
             }
         ],
         "aggregate": {
@@ -652,7 +652,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "filled",
                 "23": "filled",
-                "name": "Work"
+                "category": "Work"
             },
             {
                 "0": "unfilled",
@@ -679,7 +679,7 @@ export const dummy_data =[
                 "21": "filled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Sleep"
+                "category": "Sleep"
             },
             {
                 "0": "unfilled",
@@ -706,7 +706,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Tasks"
+                "category": "Tasks"
             },
             {
                 "0": "unfilled",
@@ -733,7 +733,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Socialising"
+                "category": "Socialising"
             },
             {
                 "0": "unfilled",
@@ -760,7 +760,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Learning"
+                "category": "Learning"
             },
             {
                 "0": "unfilled",
@@ -787,7 +787,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Making"
+                "category": "Making"
             }
         ],
         "aggregate": {
@@ -844,7 +844,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Work"
+                "category": "Work"
             },
             {
                 "0": "unfilled",
@@ -871,7 +871,7 @@ export const dummy_data =[
                 "21": "filled",
                 "22": "filled",
                 "23": "filled",
-                "name": "Sleep"
+                "category": "Sleep"
             },
             {
                 "0": "unfilled",
@@ -898,7 +898,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Tasks"
+                "category": "Tasks"
             },
             {
                 "0": "unfilled",
@@ -925,7 +925,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Socialising"
+                "category": "Socialising"
             },
             {
                 "0": "unfilled",
@@ -952,7 +952,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Learning"
+                "category": "Learning"
             },
             {
                 "0": "unfilled",
@@ -979,7 +979,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Making"
+                "category": "Making"
             }
         ],
         "aggregate": {
@@ -1036,7 +1036,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Work"
+                "category": "Work"
             },
             {
                 "0": "filled",
@@ -1063,7 +1063,7 @@ export const dummy_data =[
                 "21": "filled",
                 "22": "filled",
                 "23": "filled",
-                "name": "Sleep"
+                "category": "Sleep"
             },
             {
                 "0": "unfilled",
@@ -1090,7 +1090,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Tasks"
+                "category": "Tasks"
             },
             {
                 "0": "unfilled",
@@ -1117,7 +1117,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Socialising"
+                "category": "Socialising"
             },
             {
                 "0": "unfilled",
@@ -1144,7 +1144,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Learning"
+                "category": "Learning"
             },
             {
                 "0": "unfilled",
@@ -1171,7 +1171,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Making"
+                "category": "Making"
             }
         ],
         "aggregate": {
@@ -1228,7 +1228,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Work"
+                "category": "Work"
             },
             {
                 "0": "filled",
@@ -1255,7 +1255,7 @@ export const dummy_data =[
                 "21": "filled",
                 "22": "filled",
                 "23": "filled",
-                "name": "Sleep"
+                "category": "Sleep"
             },
             {
                 "0": "unfilled",
@@ -1282,7 +1282,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Tasks"
+                "category": "Tasks"
             },
             {
                 "0": "unfilled",
@@ -1309,7 +1309,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Socialising"
+                "category": "Socialising"
             },
             {
                 "0": "unfilled",
@@ -1336,7 +1336,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Learning"
+                "category": "Learning"
             },
             {
                 "0": "unfilled",
@@ -1363,7 +1363,7 @@ export const dummy_data =[
                 "21": "unfilled",
                 "22": "unfilled",
                 "23": "unfilled",
-                "name": "Making"
+                "category": "Making"
             }
         ],
         "aggregate": {

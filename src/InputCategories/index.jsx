@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { CategoryPalette } from  "./CategoryPalette";
-import { preset_lists } from "../data";
+import { preset_category_palettes } from "../data";
 import { Section, SectionInner, SectionHeader, SelectedTab, UnselectedTab } from "../shared_styles";
 import { Tab } from "@headlessui/react";
 
 
 export function InputCategories({ setCategoryPalette }) {
-    const [category_palettes, setCategoryPalettes] = useState(preset_lists);
-    const [selected_palette, setSelectedPalette] = useState(preset_lists[0]);
+    const [category_palettes, setCategoryPalettes] = useState(preset_category_palettes);
+    const [selected_palette, setSelectedPalette] = useState(preset_category_palettes[0]);
 
     function updatePalettes(palette_index, updated_categories){
         const new_palettes_arr = [...category_palettes];
@@ -31,7 +31,7 @@ export function InputCategories({ setCategoryPalette }) {
             <SectionInner>
                 <Tab.Group onChange={onChangeTab} >
                     <Tab.List >
-                        {category_palettes.map((c, i) => <TabLabel label={c.name} key={i} />)}
+                        {category_palettes.map((c, i) => <TabLabel label={c.palette} key={i} />)}
                     </Tab.List>
 
                     <Tab.Panels >
@@ -59,11 +59,11 @@ export  function TabLabel({ label }) {
             <Tab as={React.Fragment}>
                 {({ selected }) => (
                     selected ? (
-                        <SelectedTab width = {`calc(100% / ${preset_lists.length})`}>
+                        <SelectedTab width = {`calc(100% / ${preset_category_palettes.length})`}>
                             {label}
                         </SelectedTab>)
 
-                        : <UnselectedTab width = {`calc(100% / ${preset_lists.length})`}>
+                        : <UnselectedTab width = {`calc(100% / ${preset_category_palettes.length})`}>
                             {label}
                         </UnselectedTab>
                 )}

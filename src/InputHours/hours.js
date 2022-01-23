@@ -18,7 +18,7 @@ for (let i = 0; i < 24; i++) hours[i] = UNFILLED;
 
 export function createDay({ categories }) {
     return {
-        categories: categories.map((name) => ({ name, ...hours })),
+        categories: categories.map((category) => ({ category, ...hours })),
         aggregate: { ...hours },
     };
 }
@@ -26,13 +26,13 @@ export function createDay({ categories }) {
 export function fillHours(day, { category, from, to }) {
     const aggregate = { ...day.aggregate };
     const categories = [...day.categories].map((cat) => {
-        if (cat.name !== category) return cat;
+        if (cat.category !== category) return cat;
 
         cat = { ...cat };
         for (let i = from; i < to; i++) {
             if (aggregate[i] === UNFILLED) {
                 cat[i] = FILLED;
-                aggregate[i] = cat.name;
+                aggregate[i] = cat.category;
             }
         }
         return cat;
@@ -44,7 +44,7 @@ export function fillHours(day, { category, from, to }) {
 export function emptyHours(day, { category, from, to }) {
     const aggregate = { ...day.aggregate };
     const categories = [...day.categories].map((cat) => {
-        if (cat.name !== category) return cat;
+        if (cat.category !== category) return cat;
 
         cat = { ...cat };
         for (let i = from; i < to; i++) {
