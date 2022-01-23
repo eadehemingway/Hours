@@ -4,7 +4,7 @@ import { Tab } from "@headlessui/react";
 import styled from "styled-components";
 import { SelectedTab, UnselectedTab } from "../shared_styles";
 
-export function TabLabel({ day_label, day_data_arr, i, width }) {
+export function TabLabel({ day_label, week_data, i, width }) {
 
     return (
         <Tab as={React.Fragment}>
@@ -12,12 +12,12 @@ export function TabLabel({ day_label, day_data_arr, i, width }) {
                 selected ? (
                     <SelectedTab width={width}>
                         {day_label}
-                        <Incomplete day_data={day_data_arr[i]}/>
+                        <Incomplete day_data={week_data[i]}/>
                     </SelectedTab>)
 
                     : <UnselectedTab width={width}>
                         {day_label}
-                        <Incomplete day_data={day_data_arr[i]}/>
+                        <Incomplete day_data={week_data[i]}/>
                     </UnselectedTab>
             )}
         </Tab>
