@@ -48,6 +48,7 @@ export function CategoryItem({ category_obj, editCategory, removeCategory, categ
                 onChange={(e)=>{setCategoryTitle(e.target.value);}}
                 value={category_title}
                 type="text"
+                editable = {category_obj.editable}
             />
             <EditableSpan
                 ref = {ref}
@@ -57,6 +58,7 @@ export function CategoryItem({ category_obj, editCategory, removeCategory, categ
                 onBlur = {handleBlur}
                 onChange={(e)=>{setCategoryDescription(e.target.value);}}
                 value={category_description}
+                editable = {category_obj.editable}
                 type="text"
             />
 
@@ -79,5 +81,7 @@ export const CategoryTile = styled.div`
 
 
 const EditableSpan = styled.input`
-&:focus {outline: none;};
+    &:focus {outline: none;};
+    background: none;
+    border: ${props=> props.editable ? "1px solid": "none"}
 `;
