@@ -11,13 +11,14 @@ export function TabLabel({ day_label, week_data, i, width }) {
             {({ selected }) => (
                 selected ? (
                     <SelectedTab width={width}>
-                        {day_label}
                         <Incomplete day_data={week_data[i]}/>
+                        <Label>{day_label}</Label>
                     </SelectedTab>)
 
                     : <UnselectedTab width={width}>
-                        {day_label}
                         <Incomplete day_data={week_data[i]}/>
+                        <Label>{day_label}</Label>
+
                     </UnselectedTab>
             )}
         </Tab>
@@ -26,14 +27,36 @@ export function TabLabel({ day_label, week_data, i, width }) {
 }
 
 function Incomplete({ day_data }){
-    const is_incomplete = Object.values(day_data.aggregate).some((agg) => agg === UNFILLED);
-    return <IncompleteLabel > {is_incomplete ? "(incomplete)" : ""} </IncompleteLabel>;
+    return (
+        <MiniProgress>
+            {Object.keys(day_data.aggregate).map((hour, i)=>{
+                const filled = day_data.aggregate[hour] !== UNFILLED;
+                return <ProgressHour key={i} filled={filled}/>;
+            })}
+        </MiniProgress>
+    );
 }
 
+const Label = styled.p`
+    position: relative;
+    z-index: 1;
+`;
 
-const IncompleteLabel = styled.div`
-  font-size: 0.5rem;
-  color: red;
-  margin-bottom: 10px;
+const ProgressHour = styled.div`
+    height: 100%;
+    width: 4%;
+    border: 1px solid yellow;
+    opacity: 0.5;
+    background:${props=> props.filled ? "yellow": "none"}
+`;
+
+const MiniProgress = styled.div`
+    position: absolute;
+    top: 0;
+    left:0;
+    border: 2px solid red;
+    width: 100%;
+    height: 100%;
+    display: flex;
 `;
 

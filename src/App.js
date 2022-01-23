@@ -9,7 +9,7 @@ import "./App.css";
 function App() {
     const [category_palette, setCategoryPalette] = useState([]);
     const [week_data, setWeekData] = useState();
-    console.log("week_data:", week_data);
+
     return (
         <div>
             {/* <Homepage/>

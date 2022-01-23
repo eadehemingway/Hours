@@ -42,6 +42,7 @@ align-items: center;
 `;
 
 export const SelectedTab= styled.button`
+  position: relative;
   border: 1px solid;
   border-bottom: none;
   padding: 20px;
@@ -53,9 +54,11 @@ export const SelectedTab= styled.button`
   font-style: normal;
   font-size: 32px;
   background: ${section_colour};
-  width: ${props => props.width ? props.width : `auto`}
+  width: ${props => props.width ? props.width : "auto"}
 `;
 export const UnselectedTab= styled.button`
+  position: relative;
+
   border: 1px solid;
   padding: 20px;
   cursor: pointer;
@@ -66,5 +69,5 @@ export const UnselectedTab= styled.button`
   font-size: 32px;
   border-radius: 20px 20px 0px 0px;
   background: ${section_colour};
-  width: ${props => props.width ? props.width : `auto`}
+  width: ${props => props.width ? props.width : "auto"}
 `;
