@@ -4,7 +4,7 @@ import { createDay, fillHours, emptyHours, FILLED, UNFILLED, DAYS_ARR } from "./
 import Day from "./Day.jsx";
 import { TabLabel } from "./TabLabel.jsx";
 import { Section, SectionInner, SectionHeader } from "../shared_styles";
-import { dummy_categories, dummy_data } from "../Final/dummy_data";
+import { dummy_categories, dummy_data } from "../data";
 import styled from "styled-components";
 import { drawAxis } from "../axis";
 

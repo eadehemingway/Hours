@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { CategoryPalette } from  "./CategoryPalette";
-import { preset_lists } from "./default_lists";
+import { preset_lists } from "../data";
 import { Section, SectionInner, SectionHeader, SelectedTab, UnselectedTab } from "../shared_styles";
 import { Tab } from "@headlessui/react";
 

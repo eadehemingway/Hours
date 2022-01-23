@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import { Section, SectionHeader } from "../shared_styles";
-import { dummy_data , dummy_categories } from "./dummy_data";
+import { dummy_data , dummy_categories } from "../data";
 import wood from "../wood.png";
 import { drawAxis } from "../axis";
 
