@@ -85,4 +85,6 @@ export default function Day({ day_data, day_index, updateDay, setCategoryLabelWi
 const DayGrid = styled.div`
   display: grid;
   grid-template-columns: auto repeat(24, minmax(0, 1fr));
+  grid-auto-rows: minmax(10px, auto);
+  height: 400px;
 `;
