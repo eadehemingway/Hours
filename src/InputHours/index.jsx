@@ -4,12 +4,13 @@ import { createDay, fillHours, emptyHours, FILLED, UNFILLED, DAYS_ARR } from "./
 import Day from "./Day.jsx";
 import { TabLabel } from "./TabLabel.jsx";
 import { Section, SectionInner, SectionHeader } from "../shared_styles";
-import { dummy_categories } from "../Final/dummy_data";
+import { dummy_categories, dummy_data } from "../Final/dummy_data";
 import styled from "styled-components";
 import { drawAxis } from "../axis";
 
 
 export function InputHours({ category_palette, setWeekData, week_data }) {
+    week_data = dummy_data;
     category_palette = dummy_categories; // for development dummy data
     const [highlight_missing_data, setHighlightMissingData] = useState(false);
     const [category_label_width, setCategoryLabelWidth] = useState(null);
@@ -42,7 +43,6 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
     }, [category_label_width]);
 
     function handleNext(){
-        // if data all filled in then go to next page
 
         // if data missing then highlight missing bits in tabs
         const aggregates_for_each_day = week_data.map((day_obj)=> {
@@ -53,6 +53,23 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
         if (data_missing){
             // highlight missing bits in tabs
             setHighlightMissingData(true);
+        }else {
+        // structure data so that it can be used in accumulative bar chart...
+            const aggregates = week_data.map(d=> Object.values(d.aggregate)).flat();
+            let acc_data = [];
+
+            category_palette.forEach(c=> {
+                let indices = [];
+                let idx = aggregates.indexOf(c);
+                while (idx !== -1) {
+                    indices.push(idx);
+                    idx = aggregates.indexOf(c, idx + 1);
+                }
+                const cat_accumulation = { label: c, total: indices.length };
+                acc_data.push(cat_accumulation);
+            });
+            console.log(acc_data); // this data can be used to plot accumulative bars...
+
         }
     }
 
