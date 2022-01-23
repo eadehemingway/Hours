@@ -94,7 +94,6 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
                                     day_index={i}
                                     day_data={day_data}
                                     updateDay={updateDay}
-                                    category_palette={category_palette}
                                     setCategoryLabelWidth={setCategoryLabelWidth}
                                 />
                             </Tab.Panel>
