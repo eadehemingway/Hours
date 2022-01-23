@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { fillHours, emptyHours, FILLED, UNFILLED, HOURS_ARR } from "./hours";
-import { HourLabels } from "./HourLabels";
 import { Row } from "./Row";
 import styled from "styled-components";
 
@@ -68,9 +67,6 @@ export default function Day({ day_data, day_index, updateDay }) {
     return (
         <div>
             <DayGrid>
-                <div />
-                {HOURS_ARR.map((_, i) => <HourLabels key={i} index={i}/>)}
-
                 {day_data.categories.map((cat, i) => ( <Row
                     cat={cat}
                     key={i}
@@ -80,7 +76,6 @@ export default function Day({ day_data, day_index, updateDay }) {
                     isPending={isPending}
                 /> ))}
 
-                <div />
             </DayGrid>
         </div>
     );
