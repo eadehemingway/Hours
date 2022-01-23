@@ -2,8 +2,8 @@
 import styled from "styled-components";
 
 let section_colour = "#D9D0BD";
-
-
+export let darker_shade = "#fff3de";
+export let lighter_shade = "#fffaf3";
 
 export const Section = styled.section`
 background: ${section_colour};

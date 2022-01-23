@@ -1,4 +1,4 @@
-import { IconWrapper } from "./general_styles";
+import styled from "styled-components";
 let minus_icon_path = "M 25 50 L 75 50";
 
 export function MinusIcon({ handleClick }) {
@@ -11,3 +11,8 @@ export function MinusIcon({ handleClick }) {
         </IconWrapper>
     );
 }
+
+const IconWrapper = styled.div`
+
+
+`;
