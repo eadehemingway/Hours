@@ -10,7 +10,7 @@ import { drawAxis } from "../axis";
 
 
 export function InputHours({ category_palette, setWeekData }) {
-    // category_palette = dummy_categories; // for development dummy data
+    category_palette = dummy_categories; // for development dummy data
     const [day_data_arr, setDayDataArr] = useState();
     const $canvas = useRef(null);
     const window_width = document.body.clientWidth;
@@ -20,6 +20,7 @@ export function InputHours({ category_palette, setWeekData }) {
         const updated = [...day_data_arr];
         updated.splice(index, 1, new_day_data);
         setDayDataArr(updated);
+        setWeekData(updated);
     }
 
     useEffect(()=>{
@@ -55,9 +56,8 @@ export function InputHours({ category_palette, setWeekData }) {
                 ))}
             </Tab.Panels>
         </Tab.Group>
-        <button onClick={()=> setWeekData(day_data_arr)}>DONE</button>
     </SectionInner>}
-    </Section>
+        </Section>
     );
 }
 
