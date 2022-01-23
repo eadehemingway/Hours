@@ -1,28 +1,35 @@
 import styled from "styled-components";
 import { MinusIcon } from "./MinusIcon";
 import { useRef, useEffect } from "react";
+import { useState } from "react/cjs/react.development";
 
-const EditableSpan = styled.span`
-  &:focus {outline: none;};
-`;
+
 
 export function CategoryItem({ category_obj, editCategory, removeCategory, category_index }) {
+    const [category_title, setCategoryTitle] = useState("");
+    console.log("category_title:", category_title);
+    const [category_description, setCategoryDescription] = useState("");
     const ref = useRef(null);
 
     useEffect(() => {
         ref.current.focus();
+
     }, []);
+
+    useEffect(()=>{
+        setCategoryTitle(category_obj.category);
+        setCategoryDescription(category_obj.description);
+    }, [category_obj]);
 
     function handleInput(d) {
         if (d.charCode === 13) {
-            editCategory(category_index, { category: d.target.innerHTML, editable: false });
+            editCategory(category_index, { category: category_title, editable: true, description: category_description });
         }
     }
 
     function handleBlur(d) {
-        editCategory(category_index, { category: d.target.innerHTML, editable: false });
+        editCategory(category_index, { category:category_title, editable: true , description: category_description });
     }
-
     function handleRemove(){
         removeCategory(category_index);
     }
@@ -35,11 +42,24 @@ export function CategoryItem({ category_obj, editCategory, removeCategory, categ
             <EditableSpan
                 ref = {ref}
                 suppressContentEditableWarning={true}
-                contentEditable = {category_obj.editable}
+                disabled = {!category_obj.editable}
                 onKeyPress = {handleInput}
-                onBlur = {handleBlur}>
-                {category_obj.category}
-            </EditableSpan>
+                onBlur = {handleBlur}
+                onChange={(e)=>{setCategoryTitle(e.target.value);}}
+                value={category_title}
+                type="text"
+            />
+            <EditableSpan
+                ref = {ref}
+                suppressContentEditableWarning={true}
+                disabled = {!category_obj.editable}
+                onKeyPress = {handleInput}
+                onBlur = {handleBlur}
+                onChange={(e)=>{setCategoryDescription(e.target.value);}}
+                value={category_description}
+                type="text"
+            />
+
         </CategoryTile>
     );
 }
@@ -49,4 +69,13 @@ export const CategoryTile = styled.div`
   cursor: pointer;
   padding: 50px;
 
+`;
+
+const CategoryTitle = styled.h3`
+&:focus {outline: none;};
+
+`;
+
+const EditableSpan = styled.input`
+&:focus {outline: none;};
 `;

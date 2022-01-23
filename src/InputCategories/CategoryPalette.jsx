@@ -22,7 +22,7 @@ export function CategoryPalette({ palette_data, updatePalettes, palette_index })
 
     function addNewCategory(){
         const new_category_list = [...categories];
-        new_category_list.push({ category: "", editable: true });
+        new_category_list.push({ category: "", editable: true, description: "" });
         setCategories(new_category_list);
     }
 
