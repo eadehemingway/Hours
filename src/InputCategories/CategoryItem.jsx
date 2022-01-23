@@ -68,13 +68,15 @@ export const CategoryTile = styled.div`
   border: 1px solid red;
   cursor: pointer;
   padding: 50px;
+  position: relative;
+  :hover{
+    #minus-icon{
+        display: block;
+    }
+  }
 
 `;
 
-const CategoryTitle = styled.h3`
-&:focus {outline: none;};
-
-`;
 
 const EditableSpan = styled.input`
 &:focus {outline: none;};
