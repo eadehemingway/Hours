@@ -4,7 +4,7 @@ import { Row } from "./Row";
 import styled from "styled-components";
 
 
-export default function Day({ day_data, day_index, updateDay }) {
+export default function Day({ day_data, day_index, updateDay, setCategoryLabelWidth }) {
     const [isDragging, setIsDragging] = useState(false);
     const [pending_from, setPendingFrom] = useState(undefined);
     const [pending_to, setPendingTo] = useState(undefined);
@@ -74,6 +74,7 @@ export default function Day({ day_data, day_index, updateDay }) {
                     onDraggedOver={onDraggedOver}
                     endDragging={endDragging}
                     isPending={isPending}
+                    setCategoryLabelWidth={setCategoryLabelWidth}
                 /> ))}
 
             </DayGrid>

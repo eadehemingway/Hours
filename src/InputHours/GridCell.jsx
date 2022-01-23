@@ -24,6 +24,7 @@ export  function GridCell({ cat, hours_index, startDragging, onDraggedOver, endD
 }
 
 const Cell = styled.div`
+border: 1px solid;
   height: 50px;
   background: ${({ is_already_filled, is_pending })=>{
         if (is_pending) return "#E15838";
