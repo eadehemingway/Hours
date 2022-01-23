@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { Tab } from "@headlessui/react";
 import { createDay, fillHours, emptyHours, FILLED, UNFILLED, DAYS_ARR } from "./hours";
 import Day from "./Day.jsx";
@@ -10,8 +10,8 @@ import { drawAxis } from "../axis";
 
 
 export function InputHours({ category_palette, setWeekData, week_data }) {
-    week_data = dummy_data;
-    category_palette = dummy_categories; // for development dummy data
+    // week_data = dummy_data;
+    category_palette = dummy_categories;
     const [highlight_missing_data, setHighlightMissingData] = useState(false);
     const [category_label_width, setCategoryLabelWidth] = useState(null);
     const $canvas = useRef(null);
@@ -32,7 +32,7 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
         const data_arr = DAYS_ARR.map(() =>  createDay({ categories: category_palette }));
         setWeekData(data_arr);
 
-    }, [category_palette]);
+    }, [category_palette, setWeekData]);
 
     useEffect(() => {
         if (!$canvas.current) return;
@@ -40,9 +40,9 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
         const ctx = $canvas.current.getContext("2d");
         ctx.clearRect(0, 0, (canvas_width * 2) - 160, (window_height - 350) * 2);
         drawAxis(ctx, (canvas_width * 2) - 160, (window_height - 350) * 2, (80 + (category_label_width * 2)), 700);
-    }, [category_label_width]);
+    }, [category_label_width, canvas_width, window_height]);
 
-    function handleNext(){
+    const handleNext = useCallback(()=> {
 
         // if data missing then highlight missing bits in tabs
         const aggregates_for_each_day = week_data.map((day_obj)=> {
@@ -58,7 +58,7 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
 
 
         }
-    }
+    }, [week_data]);
 
 
     return (

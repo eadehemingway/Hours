@@ -29,25 +29,25 @@ export function InputCategories({ setCategoryPalette }) {
         <Section>
             <SectionHeader>CATEGORIES</SectionHeader>
             <SectionInner>
-            <Tab.Group onChange={onChangeTab} >
-                <Tab.List >
-                    {category_palettes.map((list, i) => <TabLabel label={list.name} key={i} />)}
-                </Tab.List>
+                <Tab.Group onChange={onChangeTab} >
+                    <Tab.List >
+                        {category_palettes.map((c, i) => <TabLabel label={c.name} key={i} />)}
+                    </Tab.List>
 
-                <Tab.Panels >
-                    {category_palettes.map((palette_data, i)=>(
-                        <Tab.Panel key={i}>
-                            <CategoryPalette
-                                updatePalettes={updatePalettes}
-                                palette_index={i}
-                                palette_data ={palette_data}
+                    <Tab.Panels >
+                        {category_palettes.map((palette_data, i)=>(
+                            <Tab.Panel key={i}>
+                                <CategoryPalette
+                                    updatePalettes={updatePalettes}
+                                    palette_index={i}
+                                    palette_data ={palette_data}
 
-                            />
-                        </Tab.Panel>
-                    ))}
-                </Tab.Panels>
-            </Tab.Group>
-            <button onClick={submit}>Submit</button>
+                                />
+                            </Tab.Panel>
+                        ))}
+                    </Tab.Panels>
+                </Tab.Group>
+                <button onClick={submit}>Submit</button>
             </SectionInner>
         </Section>
     );

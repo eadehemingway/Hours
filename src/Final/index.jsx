@@ -9,6 +9,7 @@ import { drawAxis } from "../axis";
 export  function FinalViz({ week_data, category_palette }) {
     week_data=dummy_data; // for dev
     category_palette = dummy_categories; // for dev
+
     const [main_data, setMainData] = useState();
     const [accumulation_data, setAccumulationData] = useState(); // we can use to do accu
     const $canvas = useRef(null);
@@ -28,12 +29,12 @@ export  function FinalViz({ week_data, category_palette }) {
         let acc_data = [];
         category_palette.forEach(c=> {
             let indices = [];
-            let idx = aggregates_values.indexOf(c);
+            let idx = aggregates_values.indexOf(c.category);
             while (idx !== -1) {
                 indices.push(idx);
-                idx = aggregates_values.indexOf(c, idx + 1);
+                idx = aggregates_values.indexOf(c.category, idx + 1);
             }
-            const cat_accumulation = { label: c, total: indices.length };
+            const cat_accumulation = { label: c.category, total: indices.length };
             acc_data.push(cat_accumulation);
         });
         setAccumulationData(acc_data); // this data can be used to plot accumulative bars...
@@ -61,7 +62,7 @@ export  function FinalViz({ week_data, category_palette }) {
 
 
     function getColor(category){
-        const index = dummy_categories.findIndex(c=> c == category);
+        const index = category_palette.findIndex(c=> c.category == category);
         const colors = ["gold", "yellow", "darkgreen", "pink", "brown", "slateblue", "grey1", "orange"];
         return colors[index];
     }
