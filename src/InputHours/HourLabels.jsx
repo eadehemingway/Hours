@@ -20,5 +20,6 @@ padding-bottom: 10px;
 margin-top: 20px;
 border-radius: 4px;
 font-size: 10px;
+opacity: 0;
 
 `;

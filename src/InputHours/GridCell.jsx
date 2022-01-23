@@ -24,12 +24,10 @@ export  function GridCell({ cat, hours_index, startDragging, onDraggedOver, endD
 }
 
 const Cell = styled.div`
-  border: 1px solid black;
   height: 50px;
   background: ${({ is_already_filled, is_pending })=>{
-        if (is_pending) return "pink";
-        if (is_already_filled && !is_pending) return "red";
-        else return null;
-
+        if (is_pending) return "#E15838";
+        if (is_already_filled && !is_pending) return "white";
+        else return "#E0DACE";
     }}
 `;

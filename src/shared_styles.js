@@ -10,6 +10,12 @@ background: ${section_colour};
 width: 100%;
 min-height: 100vh;
 overflow: hidden;
+position: relative;
+`;
+
+export const SectionInner = styled.div`
+width: calc(100% - 80px);
+padding: 40px;
 `;
 
 export const SectionHeader = styled.h1`
@@ -22,6 +28,7 @@ text-align: center;
 width: 100%;
 color: #E15838;
 padding-top: 40px;
+margin: 0px;
 `;
 
 export const SectionHeaderGrand = styled(SectionHeader)`
@@ -35,17 +42,29 @@ align-items: center;
 `;
 
 export const SelectedTab= styled.button`
-  background: none;
   border: 1px solid;
   border-bottom: none;
   padding: 20px;
-cursor: pointer;
-
-
+  cursor: pointer;
+  margin-left: -1px;
+  border-radius: 20px 20px 0px 0px;
+  font-family: goudy-old-style, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  background: ${section_colour};
+  width: ${props => props.width ? props.width : `auto`}
 `;
 export const UnselectedTab= styled.button`
-  background: none;
   border: 1px solid;
   padding: 20px;
   cursor: pointer;
+  font-family: goudy-old-style, serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-left: -1px;
+  font-size: 32px;
+  border-radius: 20px 20px 0px 0px;
+  background: ${section_colour};
+  width: ${props => props.width ? props.width : `auto`}
 `;

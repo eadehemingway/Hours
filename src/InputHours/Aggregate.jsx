@@ -12,8 +12,7 @@ export  function Aggregate({ ag_data }) {
 
 
 const AggregateCell = styled.div`
-  border: 1px solid black;
   height: 30px;
-  background: ${({ filled })=> filled ? "blue" : null }
+  background: ${({ filled })=> filled ? "white" : null }
 
 `;

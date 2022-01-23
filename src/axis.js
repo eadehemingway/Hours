@@ -69,28 +69,30 @@ function inQuad(n) {
   };
 
 
-export function drawAxis(ctx, width, height) {
+export function drawAxis(ctx, width, height, x, y) {
+    if (!width || !height || isNaN(x) || isNaN(y)) {
+        console.warn("Axis not drawn");
+        return;
+    }
     let font = new FontFace('goudy-old-style', 'url(https://use.typekit.net/af/4d44c2/00000000000000007735a6eb/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3)');
     let start;
     const y_space_for_labels = 60;
-    const x_space_for_labels = 20;
-    const axis_width = width - (x_space_for_labels * 2);
-    const axis_height = height;
-    let axis_lines = axis_width <= 400 ? lines.filter((d, i) => i % 2 == 0) : lines;
+    const x_space_for_labels = 0;
+    let axis_lines = width <= 400 ? lines.filter((d, i) => i % 2 == 0) : lines;
     axis_lines = axis_lines.map(d => ({ hour: d, completed: false }));
     const lines_count = (axis_lines.length - 1);
-    const hour_width = axis_width / lines_count;
+    const hour_width = width / lines_count;
 
     const delay_per_line = 50;
     const duration_per_line = 600;
     const delay_total = (delay_per_line * lines_count);
     const duration_total = duration_per_line + delay_total;
 
-    const y1 = axis_height;
-    const y2 = 0 + y_space_for_labels;
-    const x1 = x_space_for_labels;
+    const y1 = y + height;
+    const y2 = y + y_space_for_labels;
+    const x1 = x;
     const long_line_length = (y2 - y1);
-    const short_line_length = long_line_length * 0.95;
+    const short_line_length = long_line_length + 40;
 
     function drawLines(timestamp) {
 

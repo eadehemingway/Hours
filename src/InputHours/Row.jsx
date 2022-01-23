@@ -29,6 +29,6 @@ font-size: 1rem;
 display: flex;
 justify-content: end;
 align-items: center;
-padding-right: 10px;
-
+width: 0px;
+opacity: 0;
 `;

@@ -68,7 +68,7 @@ export default function Day({ day_data, day_index, updateDay }) {
 
     return (
         <div>
-            <DayGrid >
+            <DayGrid>
                 <div />
                 {HOURS_ARR.map((_, i) => <HourLabels key={i} index={i}/>)}
 
@@ -90,6 +90,5 @@ export default function Day({ day_data, day_index, updateDay }) {
 
 const DayGrid = styled.div`
   display: grid;
-  grid-template-columns: auto repeat(24,minmax(0,1fr));
-
+  grid-template-columns: auto repeat(24, minmax(0, 1fr));
 `;

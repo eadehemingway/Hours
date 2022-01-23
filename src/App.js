@@ -10,7 +10,7 @@ function App() {
     const [category_palette, setCategoryPalette] = useState([]);
     const [week_data, setWeekData] = useState([]);
     return (
-        <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
+        <div>
             <Homepage/>
 
             <Description/>

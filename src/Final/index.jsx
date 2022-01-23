@@ -4,16 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { Section, SectionHeader } from "../shared_styles";
 import { dummy_data , dummy_categories } from "./dummy_data";
 import wood from "../wood.png";
-
+import { drawAxis } from "../axis";
 
 export  function FinalViz({ week_data, category_palette }) {
 
     const [data, setData] = useState();
     const $canvas = useRef(null);
+    const window_width = document.body.clientWidth;
+    const window_height = window.innerHeight;
 
-    const square_size = 30;
-    const left_padding = 100;
-    const top_padding = 100;
+    const square_size = ((window_width * 2) - 160) / 24;
+    const left_padding = 80;
+    const top_padding = 200;
 
 
     useEffect(()=>{
@@ -58,19 +60,18 @@ export  function FinalViz({ week_data, category_palette }) {
 
         x = x + left_padding;
         y = y + top_padding;
+        ctx.save();
         ctx.beginPath();
         ctx.fillStyle = color;
         ctx.fillRect(x, y, square_size, square_size);
-        ctx.strokeStyle = "black";
-        ctx.strokeRect(x, y, square_size, square_size);
+        // ctx.strokeStyle = "black";
+        // ctx.strokeRect(x, y, square_size, square_size);
 
-
-
-        ctx.drawImage(img, x, y, square_size, square_size);
-        ctx.globalCompositeOperation = "multiply";
+        // ctx.drawImage(img, x, y, square_size, square_size);
+        // ctx.globalCompositeOperation = "multiply";
+        ctx.restore();
+        drawAxis(ctx, (window_width * 2) - 160, window_height * 1.2, 80, 0);
     }
-
-
 
     function drawRow(ctx, day_index, day_data){
         for (const hour in day_data) {
@@ -82,7 +83,7 @@ export  function FinalViz({ week_data, category_palette }) {
         <Section>
             <SectionHeader>HOURS</SectionHeader>
             {/* <img src={wood}/> */}
-            <canvas ref={$canvas}id="myCanvas" width="1000" height="450" style={{ border:"1px solid #000000" }}></canvas>
+            <canvas ref={$canvas}id="myCanvas" width={window_width * 2} height={window_height * 1.2} style={{ width: window_width, height: window_height * 0.6, position: "absolute", bottom: "40px", left: "0px" }}></canvas>
             <DownloadButton onClick={download}>Download!</DownloadButton>
         </Section>
     );
