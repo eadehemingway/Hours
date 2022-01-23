@@ -10,6 +10,7 @@ import { drawAxis } from "../axis";
 
 
 export function InputHours({ category_palette, setWeekData, week_data }) {
+    const [highlight_missing_data, setHighlightMissingData] = useState(false);
     category_palette = dummy_categories; // for development dummy data
     const $canvas = useRef(null);
     const window_width = document.body.clientWidth;
@@ -34,6 +35,21 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
         drawAxis(ctx, (window_width * 2) - 160, (window_height - 350) * 2, 80, 700);
     }, []);
 
+    function handleNext(){
+        // if data all filled in then go to next page
+
+        // if data missing then highlight missing bits in tabs
+        const aggregates_for_each_day = week_data.map((day_obj)=> {
+            return Object.values(day_obj.aggregate);
+        });
+        const data_missing = aggregates_for_each_day.flat().includes(UNFILLED);
+
+        if (data_missing){
+            // highlight missing bits in tabs
+            setHighlightMissingData(true);
+        }
+    }
+
     return (
 
         <Section>
@@ -43,7 +59,16 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
     <SectionInner>
         <Tab.Group>
             <Tab.List style={{ paddingBottom: "40px" }}>
-                {DAYS_ARR.map((day_label, i) => <TabLabel width={`calc(100% / ${DAYS_ARR.length})`} day_label={day_label} week_data={week_data} i={i} key={i}/>)}
+                {DAYS_ARR.map((day_label, i) =>
+                    <TabLabel
+                        width={`calc(100% / ${DAYS_ARR.length})`}
+                        day_label={day_label}
+                        week_data={week_data}
+                        i={i}
+                        key={i}
+                        highlight_missing_data={highlight_missing_data}
+                        setHighlightMissingData={setHighlightMissingData}
+                    />)}
             </Tab.List>
 
             <Tab.Panels>
@@ -54,8 +79,19 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
                 ))}
             </Tab.Panels>
         </Tab.Group>
+        <Button onClick={handleNext}>NEXT</Button>
     </SectionInner>}
         </Section>
     );
 }
 
+
+const Button = styled.button`
+font-size: 20px;
+border: 1px solid;
+margin: 50px;
+padding: 50px;
+background: none;
+cursor: pointer
+
+`;

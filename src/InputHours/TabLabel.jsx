@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fillHours, emptyHours, FILLED, UNFILLED } from "./hours";
 import { Tab } from "@headlessui/react";
 import styled from "styled-components";
 import { SelectedTab, UnselectedTab } from "../shared_styles";
 
-export function TabLabel({ day_label, week_data, i, width }) {
+export function TabLabel({ day_label, week_data, i, width, highlight_missing_data, setHighlightMissingData }) {
+
+    useEffect(()=>{
+        if (highlight_missing_data){
+            setTimeout(()=>{
+                setHighlightMissingData(false);
+            }, 100);
+        }
+    }, [highlight_missing_data]);
 
     return (
         <Tab as={React.Fragment}>
             {({ selected }) => (
                 selected ? (
                     <SelectedTab width={width}>
-                        <Incomplete day_data={week_data[i]}/>
+                        <ProgressBar highlight_missing_data={highlight_missing_data} day_data={week_data[i]}/>
                         <Label>{day_label}</Label>
                     </SelectedTab>)
 
                     : <UnselectedTab width={width}>
-                        <Incomplete day_data={week_data[i]}/>
+                        <ProgressBar highlight_missing_data={highlight_missing_data} day_data={week_data[i]}/>
                         <Label>{day_label}</Label>
 
                     </UnselectedTab>
@@ -26,12 +34,14 @@ export function TabLabel({ day_label, week_data, i, width }) {
     );
 }
 
-function Incomplete({ day_data }){
+function ProgressBar({ day_data , highlight_missing_data }){
+
     return (
         <MiniProgress>
             {Object.keys(day_data.aggregate).map((hour, i)=>{
                 const filled = day_data.aggregate[hour] !== UNFILLED;
-                return <ProgressHour key={i} filled={filled}/>;
+                const highlight = !filled && highlight_missing_data;
+                return <ProgressHour key={i} filled={filled} highlight={highlight}/>;
             })}
         </MiniProgress>
     );
@@ -45,7 +55,7 @@ const Label = styled.p`
 const ProgressHour = styled.div`
     height: 100%;
     width: 4%;
-    border: 1px solid yellow;
+    border: ${props=> props.highlight ? "1px solid red": "1px solid yellow"};
     opacity: 0.5;
     background:${props=> props.filled ? "yellow": "none"}
 `;
@@ -54,7 +64,6 @@ const MiniProgress = styled.div`
     position: absolute;
     top: 0;
     left:0;
-    border: 2px solid red;
     width: 100%;
     height: 100%;
     display: flex;
