@@ -20,8 +20,6 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
     const navigate = useNavigate();
     const handleBack = () => navigate(ROUTES.INPUT_CATEGORIES);
 
-
-
     const $canvas = useRef(null);
     const window_height = window.innerHeight;
 
@@ -58,15 +56,10 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
         });
         const data_missing = aggregates_for_each_day.flat().includes(UNFILLED);
 
-        if (data_missing){
-            // highlight missing bits in tabs
-            setHighlightMissingData(true);
-        }else {
-            // navigate to next page
-            navigate(ROUTES.FINAL_VIZ);
+        if (data_missing)setHighlightMissingData(true);
+        else  navigate(ROUTES.FINAL_VIZ);
 
-        }
-    }, [week_data]);
+    }, [week_data, navigate]);
 
     useEffect(()=>{
         if (highlight_missing_data){

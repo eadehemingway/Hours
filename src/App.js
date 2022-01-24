@@ -4,8 +4,6 @@ import { Homepage } from "./Homepage";
 import { InputCategories } from "./InputCategories";
 import { InputHours } from "./InputHours";
 import { FinalViz } from "./Final";
-import { Nav } from "./Nav";
-import { createDay, fillHours, emptyHours, FILLED, UNFILLED, DAYS_ARR } from "./InputHours/hours";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";

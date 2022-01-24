@@ -17,8 +17,18 @@ const hours = {};
 for (let i = 0; i < 24; i++) hours[i] = UNFILLED;
 
 export function createDay({ categories }) {
+
+
     return {
-        categories: categories.map((c) => ({ category: c.category, ...hours })),
+        categories: categories.map((c) => {
+            const image_index = Math.floor(Math.random() * 7);
+            const scale_values = [-1, 1];
+            const y_index = Math.round(Math.random());
+            const x_index = Math.round(Math.random());
+            const scale_y = scale_values[y_index];
+            const scale_x = scale_values[x_index];
+            return { category: c.category, scale_y, scale_x, image_index,  ...hours,  };
+        }),
         aggregate: { ...hours },
     };
 }
