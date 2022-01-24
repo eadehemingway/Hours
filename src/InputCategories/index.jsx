@@ -4,6 +4,7 @@ import { CategoryPalette } from  "./CategoryPalette";
 import { preset_category_palettes } from "../data";
 import { Section, SectionInner, SectionHeader, SelectedTab, UnselectedTab } from "../shared_styles";
 import { Tab } from "@headlessui/react";
+import { useEffect } from "react/cjs/react.development";
 
 
 export function InputCategories({ setCategoryPalette }) {
@@ -16,10 +17,12 @@ export function InputCategories({ setCategoryPalette }) {
         setCategoryPalettes(new_palettes_arr);
     }
 
-    function submit(){
+    useEffect(()=>{
         const category_palette = selected_palette.categories;
         setCategoryPalette(category_palette);
-    }
+    }, [selected_palette, setCategoryPalette]);
+
+
 
     function onChangeTab(index){
         setSelectedPalette(category_palettes[index]);
@@ -47,7 +50,6 @@ export function InputCategories({ setCategoryPalette }) {
                         ))}
                     </Tab.Panels>
                 </Tab.Group>
-                <button onClick={submit}>Submit</button>
             </SectionInner>
         </Section>
     );
