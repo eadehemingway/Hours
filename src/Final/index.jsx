@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import { Section, SectionHeader } from "../shared_styles";
-import { dummy_categories } from "../data";
+import { dummy_week_data, dummy_categories } from "../data";
 import { drawAxis } from "../axis";
 import grain_2 from '../wood_grain-02.jpg';
 import grain_3 from '../wood_grain-03.jpg';
@@ -15,9 +15,8 @@ import grain_9 from '../wood_grain-09.jpg';
 
 export  function FinalViz({ week_data, category_palette }) {
 
-    // week_data=dummy_week_data; // for dev
-    // category_palette = dummy_categories; // for dev
-
+    week_data = dummy_week_data; // for dev
+    category_palette = dummy_categories; // for dev
 
     const [main_data, setMainData] = useState();
     const [accumulation_data, setAccumulationData] = useState(); // we can use to do accu
@@ -26,9 +25,9 @@ export  function FinalViz({ week_data, category_palette }) {
     const window_height = window.innerHeight;
     const img_sources = [grain_2, grain_3, grain_4, grain_5, grain_6, grain_7, grain_8, grain_9];
     let imgs = [];
-    const square_size = ((window_width * 2) - 160) / 24;
-    const left_padding = 80;
-    const top_padding = 200;
+    const square_size = (window_width - 80) / 24;
+    const left_padding = 40;
+    const top_padding = 100;
 
 
     useEffect(()=>{
@@ -53,11 +52,11 @@ export  function FinalViz({ week_data, category_palette }) {
     },[week_data, category_palette]);
 
     useEffect(()=>{
-        if (!$canvas) return;
-        if (!main_data) return;
+        if (!$canvas.current) return;
+        if (!week_data) return;
         const ctx = $canvas.current.getContext("2d");
         ctx.clearRect(0, 0, window_width, window_height);
-
+        ctx.scale(2, 2);
         let img_load_count = 0;
         let img_count = img_sources.length;
 
@@ -67,14 +66,14 @@ export  function FinalViz({ week_data, category_palette }) {
                 img_load_count++;
                 imgs.push(img);
                 if (img_load_count == img_count) {
-                    main_data.forEach((day_data, day_index)=>{
+                    week_data.forEach((day_data, day_index)=>{
                         drawRow(ctx, day_index, day_data);
                     });
                 }
             };
             img.src = img_sources[i];
         }
-    }, [main_data]);
+    }, [week_data]);
 
     function download(){
         var canvas = $canvas.current;
@@ -88,7 +87,8 @@ export  function FinalViz({ week_data, category_palette }) {
 
     function getColor(category, opacity){
         let block_opacity = opacity || 1;
-        const index = dummy_categories.findIndex(c=> c == category);
+        let categories = category_palette.map(d => d.category);
+        const index = categories.findIndex(c => c == category);
         const colors = [
             `rgba(12, 45, 100, ${block_opacity})`,
             `rgba(200, 45, 100, ${block_opacity})`,
@@ -120,19 +120,18 @@ export  function FinalViz({ week_data, category_palette }) {
         ctx.rotate(rotations[rotation_index] * Math.PI / 180);
         ctx.translate(-(x + half_square), -(y + half_square));
         ctx.drawImage(imgs[img_source_index], x, y, square_size, square_size);
+        ctx.globalCompositeOperation = "hard-light"; // xor quite nice for faded blocks
         ctx.fillStyle = color;
-        ctx.globalCompositeOperation = "hard-light"; // xor quite nice for faded blocks, hard-light
         ctx.fillRect(x, y, square_size, square_size);
-        // ctx.globalCompositeOperation = "normal";
-        // ctx.fillRect(x, y, square_size, square_size);
         ctx.restore();
-        drawAxis(ctx, (window_width * 2) - 160, window_height * 1.2, 80, 0);
+        drawAxis(ctx, window_width - 80, window_height * 0.6, 40, 0);
     }
 
     function drawRow(ctx, day_index, day_data){
-        for (const hour in day_data) {
+        let aggregate = day_data.aggregate;
+        for (const hour in aggregate) {
             let opacity = Math.max(0.8, Math.random());
-            drawBlock(ctx, hour * square_size, day_index * square_size, getColor(day_data[hour], opacity));
+            drawBlock(ctx, hour * square_size, day_index * square_size, getColor(aggregate[hour], opacity));
         }
     }
 
@@ -140,7 +139,7 @@ export  function FinalViz({ week_data, category_palette }) {
     return (
         <Section>
             <SectionHeader>HOURS</SectionHeader>
-            <canvas ref={$canvas}
+            {week_data && <canvas ref={$canvas}
                 id="myCanvas"
                 width={window_width * 2}
                 height={window_height * 1.2}
@@ -151,7 +150,7 @@ export  function FinalViz({ week_data, category_palette }) {
                     bottom: "40px",
                     left: "0px"
                 }}
-            ></canvas>
+            ></canvas>}
             <DownloadButton onClick={download}>Download!</DownloadButton>
         </Section>
     );
