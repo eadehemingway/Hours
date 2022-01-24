@@ -12,19 +12,13 @@ import grain_9 from '../wood_grain-09.jpg';
 
 let imgs = [grain_2, grain_3, grain_4, grain_5, grain_6, grain_7, grain_8, grain_9];
 
-function getRandomBetween(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 export function GridCell({ cat, hours_index, startDragging, onDraggedOver, endDragging, isPending }) {
     const is_already_filled = cat[hours_index] === FILLED;
     const is_pending = isPending(cat.category, hours_index);
-    let img = imgs[getRandomBetween(0, imgs.length - 1)];
-    let rotation = [0, 180][getRandomBetween(0, 1)];
-    let scale = [1, -1][getRandomBetween(0, 1)];
+    console.log(cat.scale_x);
+    console.log(cat.scale_y);
     return (
-        <Cell is_pending={is_pending} is_already_filled={is_already_filled} texture={img} rotation={rotation} scale={scale} // Set these in the first rendition of the data
-
+        <Cell is_pending={is_pending} is_already_filled={is_already_filled} texture={imgs[cat.image_index]} scale_x={cat.scale_x} scale_y={cat.scale_x}
             onMouseDown={(e) => {
                 e.preventDefault();
                 startDragging({ category: cat.category, hour: hours_index });
@@ -59,6 +53,6 @@ const Cell = styled.div`
         background-blend-mode: hard-light;
         background-size: cover;
         background-image: url("${ props => props.texture || "" }");
-        transform: rotate(${ props => props.rotation || 0 }deg) scale(${ props => props.scale[0] || 1 }, ${ props => props.scale[1] || 1 });
+        transform: scale(${ props => props.scale_x || 1 }, ${ props => props.scale_y || 1 });
     }
 `;
