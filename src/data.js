@@ -1,3 +1,4 @@
+export const PAGES = ["HOME", "DESCRIPTION", "INPUT-CATEGORIES", "INPUT-HOURS", "FINAL"];
 
 export const preset_category_palettes = [
     {
