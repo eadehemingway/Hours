@@ -31,9 +31,9 @@ export  function FinalViz({ week_data, category_palette }) {
     const window_height = window.innerHeight;
     const img_sources = [grain_2, grain_3, grain_4, grain_5, grain_6, grain_7, grain_8, grain_9];
     let imgs = [];
-    const square_size = (window_width - 80) / 24;
-    const left_padding = 40;
-    const top_padding = 100;
+    const chart_margin_left = 300;
+    const chart_margin_top = 200;
+    const square_size = (window_width - (chart_margin_left * 2)) / 24;
 
 
     useEffect(()=>{
@@ -119,8 +119,8 @@ export  function FinalViz({ week_data, category_palette }) {
         const rotations = [0, 90, 180, 270];
         const rotation_index = getRandomBetween(0, rotations.length);
 
-        x = x + left_padding;
-        y = y + top_padding;
+        x = x + chart_margin_left;
+        y = y + 0;
         let half_square = square_size / 2;
         ctx.save();
         ctx.translate(x + half_square, y + half_square);
@@ -131,14 +131,14 @@ export  function FinalViz({ week_data, category_palette }) {
         ctx.fillStyle = color;
         ctx.fillRect(x, y, square_size, square_size);
         ctx.restore();
-        drawAxis(ctx, window_width - 80, window_height * 0.6, 40, 0);
+        drawAxis(ctx, window_width - (chart_margin_left * 2), window_height - (chart_margin_top * 2), chart_margin_left, chart_margin_top);
     }
 
     function drawRow(ctx, day_index, day_data){
         let aggregate = day_data.aggregate;
         for (const hour in aggregate) {
             let opacity = Math.max(0.8, Math.random());
-            drawBlock(ctx, hour * square_size, day_index * square_size, getColor(aggregate[hour], opacity));
+            drawBlock(ctx, hour * square_size, (day_index * square_size) + (chart_margin_top + 200), getColor(aggregate[hour], opacity));
         }
     }
 
@@ -155,22 +155,31 @@ export  function FinalViz({ week_data, category_palette }) {
             {week_data && <canvas ref={$canvas}
                 id="myCanvas"
                 width={window_width * 2}
-                height={window_height * 1.2}
+                height={window_height * 2}
                 style={{
                     width: `${window_width}px`,
-                    height: `${window_height * 0.6}px`,
+                    height: `${window_height}px`,
                     position: "absolute",
                     bottom: "40px",
                     left: "0px"
                 }}
             ></canvas>}
-            <DownloadButton onClick={download}>Download!</DownloadButton>
+            <DownloadButton onClick={download}>Download</DownloadButton>
         </Section>
     );
 }
 
 const DownloadButton = styled.button`
-font-size: 5rem;
-padding: 1rem;
-border: 4px solid black
+position: relative;
+  border: 1px solid;
+  padding: 20px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 5px;
+  margin: auto;
+  display: block;
 `;
