@@ -17,7 +17,6 @@ const IconWrapper = styled.div`
     width: 30px;
     height: 30px;
     background: red;
-    font-family: goudy-old-style, serif;
     font-weight: 400;
     font-style: normal;
     position: absolute;

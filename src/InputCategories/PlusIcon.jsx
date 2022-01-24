@@ -22,7 +22,6 @@ export const IconWrapper = styled.div`
   margin-top: -8px;
   margin-right: 20px;
   background: ${darker_shade};
-  font-family: goudy-old-style, serif;
   font-weight: 400;
   font-style: normal;
 `;

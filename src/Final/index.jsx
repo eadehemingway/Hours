@@ -18,9 +18,8 @@ import { ROUTES } from "../App";
 
 
 export  function FinalViz({ week_data, category_palette }) {
-
-    // week_data = dummy_week_data; // for dev
-    // category_palette = dummy_categories; // for dev
+    week_data = dummy_week_data; // for dev
+    category_palette = dummy_categories; // for dev
 
     const [main_data, setMainData] = useState();
     const [accumulation_data, setAccumulationData] = useState(); // we can use to do accu
@@ -32,9 +31,9 @@ export  function FinalViz({ week_data, category_palette }) {
     const window_height = window.innerHeight;
     const img_sources = [grain_2, grain_3, grain_4, grain_5, grain_6, grain_7, grain_8, grain_9];
     let imgs = [];
-    const square_size = (window_width - 80) / 24;
-    const left_padding = 40;
-    const top_padding = 100;
+    const chart_margin_left = 300;
+    const chart_margin_top = 200;
+    const square_size = (window_width - (chart_margin_left * 2)) / 24;
 
 
     useEffect(()=>{
@@ -96,15 +95,16 @@ export  function FinalViz({ week_data, category_palette }) {
         let block_opacity = opacity || 1;
         let categories = category_palette.map(d => d.category);
         const index = categories.findIndex(c => c == category);
+        console.log('index:', index);
         const colors = [
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(200, 45, 100, ${block_opacity})`,
-            `rgba(100, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`
+            `rgba(29,7,126,${block_opacity})`, // Blue: CIE 15 Lightness
+            `rgba(220,60,7,${block_opacity})`, // Red: CIE 50 Lightness
+            `rgba(252,206,106,${block_opacity})`, // Yellow: CIE 85 Lightness
+            `rgba(7,77,101,${block_opacity})`, // Dark Green: CIE 30 Lightness
+            `rgba(250,220,217,${block_opacity})`, // Pink: CIE 90 Lightness
+            `rgba(107,79,160,${block_opacity})`, // Purple: CIE 40 Lightness
+            `rgba(49,164,108,${block_opacity})`, // Green: 60 CIE Lightness
+            `rgba(254,143,6,${block_opacity})`, // Orange: 70 CIE Lightness
         ];
         return colors[index];
     }
@@ -119,8 +119,8 @@ export  function FinalViz({ week_data, category_palette }) {
         const rotations = [0, 90, 180, 270];
         const rotation_index = getRandomBetween(0, rotations.length);
 
-        x = x + left_padding;
-        y = y + top_padding;
+        x = x + chart_margin_left;
+        y = y + 0;
         let half_square = square_size / 2;
         ctx.save();
         ctx.translate(x + half_square, y + half_square);
@@ -131,14 +131,14 @@ export  function FinalViz({ week_data, category_palette }) {
         ctx.fillStyle = color;
         ctx.fillRect(x, y, square_size, square_size);
         ctx.restore();
-        drawAxis(ctx, window_width - 80, window_height * 0.6, 40, 0);
+        drawAxis(ctx, window_width - (chart_margin_left * 2), window_height - (chart_margin_top * 2), chart_margin_left, chart_margin_top);
     }
 
     function drawRow(ctx, day_index, day_data){
         let aggregate = day_data.aggregate;
         for (const hour in aggregate) {
             let opacity = Math.max(0.8, Math.random());
-            drawBlock(ctx, hour * square_size, day_index * square_size, getColor(aggregate[hour], opacity));
+            drawBlock(ctx, hour * square_size, (day_index * square_size) + (chart_margin_top + 200), getColor(aggregate[hour], opacity));
         }
     }
 
@@ -155,22 +155,31 @@ export  function FinalViz({ week_data, category_palette }) {
             {week_data && <canvas ref={$canvas}
                 id="myCanvas"
                 width={window_width * 2}
-                height={window_height * 1.2}
+                height={window_height * 2}
                 style={{
                     width: `${window_width}px`,
-                    height: `${window_height * 0.6}px`,
+                    height: `${window_height}px`,
                     position: "absolute",
                     bottom: "40px",
                     left: "0px"
                 }}
             ></canvas>}
-            <DownloadButton onClick={download}>Download!</DownloadButton>
+            <DownloadButton onClick={download}>Download</DownloadButton>
         </Section>
     );
 }
 
 const DownloadButton = styled.button`
-font-size: 5rem;
-padding: 1rem;
-border: 4px solid black
+position: relative;
+  border: 1px solid;
+  padding: 20px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 5px;
+  margin: auto;
+  display: block;
 `;
