@@ -131,7 +131,7 @@ export function drawAxis(ctx, width, height, x, y) {
         });
 
         if (time_elapsed < duration_total) {
-            ctx.font = '16px goudy-old-style';
+          ctx.font = '16px';
             window.requestAnimationFrame(drawLines);
         }
     }

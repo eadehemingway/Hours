@@ -18,9 +18,8 @@ import { ROUTES } from "../App";
 
 
 export  function FinalViz({ week_data, category_palette }) {
-
-    // week_data = dummy_week_data; // for dev
-    // category_palette = dummy_categories; // for dev
+    week_data = dummy_week_data; // for dev
+    category_palette = dummy_categories; // for dev
 
     const [main_data, setMainData] = useState();
     const [accumulation_data, setAccumulationData] = useState(); // we can use to do accu
@@ -96,15 +95,16 @@ export  function FinalViz({ week_data, category_palette }) {
         let block_opacity = opacity || 1;
         let categories = category_palette.map(d => d.category);
         const index = categories.findIndex(c => c == category);
+        console.log('index:', index);
         const colors = [
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(200, 45, 100, ${block_opacity})`,
-            `rgba(100, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`,
-            `rgba(12, 45, 100, ${block_opacity})`
+            `rgba(29,7,126,${block_opacity})`, // Blue: CIE 15 Lightness
+            `rgba(220,60,7,${block_opacity})`, // Red: CIE 50 Lightness
+            `rgba(252,206,106,${block_opacity})`, // Yellow: CIE 85 Lightness
+            `rgba(7,77,101,${block_opacity})`, // Dark Green: CIE 30 Lightness
+            `rgba(250,220,217,${block_opacity})`, // Pink: CIE 90 Lightness
+            `rgba(107,79,160,${block_opacity})`, // Purple: CIE 40 Lightness
+            `rgba(49,164,108,${block_opacity})`, // Green: 60 CIE Lightness
+            `rgba(254,143,6,${block_opacity})`, // Orange: 70 CIE Lightness
         ];
         return colors[index];
     }

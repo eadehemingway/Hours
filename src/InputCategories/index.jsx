@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { CategoryPalette } from  "./CategoryPalette";
 import { preset_category_palettes } from "../data";
-import { Section, SectionInner, SectionHeader, SelectedTab, UnselectedTab } from "../shared_styles";
+import { Section, SectionInner, SectionHeader, TabStyled } from "../shared_styles";
 import { Tab } from "@headlessui/react";
 import { useEffect } from "react/cjs/react.development";
 import { Nav } from "../Nav";
@@ -73,15 +73,9 @@ export  function TabLabel({ label }) {
         <>
             <Tab as={React.Fragment}>
                 {({ selected }) => (
-                    selected ? (
-                        <SelectedTab width = {`calc(100% / ${preset_category_palettes.length})`}>
+                        <TabStyled selected={selected} width = {`calc(100% / ${preset_category_palettes.length})`}>
                             {label}
-                        </SelectedTab>)
-
-                        : <UnselectedTab width = {`calc(100% / ${preset_category_palettes.length})`}>
-                            {label}
-                        </UnselectedTab>
-                )}
+                        </TabStyled>)}
             </Tab>
         </>
 

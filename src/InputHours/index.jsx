@@ -51,14 +51,14 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
     const handleNext = useCallback(()=> {
 
         // if data missing then highlight missing bits in tabs
-        const aggregates_for_each_day = week_data.map((day_obj)=> {
-            return Object.values(day_obj.aggregate);
-        });
-        const data_missing = aggregates_for_each_day.flat().includes(UNFILLED);
+        // const aggregates_for_each_day = week_data.map((day_obj)=> {
+        //     return Object.values(day_obj.aggregate);
+        // });
+        // const data_missing = aggregates_for_each_day.flat().includes(UNFILLED);
 
-        if (data_missing)setHighlightMissingData(true);
-        else  navigate(ROUTES.FINAL_VIZ);
-
+        // if (data_missing)setHighlightMissingData(true);
+        // else  navigate(ROUTES.FINAL_VIZ);
+        navigate(ROUTES.FINAL_VIZ);
     }, [week_data, navigate]);
 
     useEffect(()=>{
