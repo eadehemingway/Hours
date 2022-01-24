@@ -1,5 +1,6 @@
 
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { Section, SectionHeader } from "../shared_styles";
 import { dummy_week_data, dummy_categories } from "../data";
@@ -12,6 +13,9 @@ import grain_6 from "../wood_grain-06.jpg";
 import grain_7 from "../wood_grain-07.jpg";
 import grain_8 from "../wood_grain-08.jpg";
 import grain_9 from "../wood_grain-09.jpg";
+import { Nav } from "../Nav";
+import { ROUTES } from "../App";
+
 
 export  function FinalViz({ week_data, category_palette }) {
 
@@ -21,6 +25,9 @@ export  function FinalViz({ week_data, category_palette }) {
     const [main_data, setMainData] = useState();
     const [accumulation_data, setAccumulationData] = useState(); // we can use to do accu
     const $canvas = useRef(null);
+    const navigate = useNavigate();
+    const handleBack = () => navigate(ROUTES.INPUT_HOURS);
+
     const window_width = document.body.clientWidth;
     const window_height = window.innerHeight;
     const img_sources = [grain_2, grain_3, grain_4, grain_5, grain_6, grain_7, grain_8, grain_9];
@@ -138,6 +145,12 @@ export  function FinalViz({ week_data, category_palette }) {
 
     return (
         <Section>
+            <Nav
+                show_back={true}
+                show_next={false}
+                handleBack={handleBack}
+            />
+
             <SectionHeader>HOURS</SectionHeader>
             {week_data && <canvas ref={$canvas}
                 id="myCanvas"

@@ -1,12 +1,7 @@
 import styled from "styled-components";
-import { PAGES } from "./data";
 
 
-export function Nav({ current_page_index, handleBack, handleNext }) {
-
-    const show_next = current_page_index !== PAGES.length-1;
-    const show_back = current_page_index !== 0;
-
+export function Nav({ show_back, show_next, handleBack, handleNext }) {
 
     return (
         <NavWrapper>

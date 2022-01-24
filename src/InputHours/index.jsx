@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { Tab } from "@headlessui/react";
 import { createDay, fillHours, emptyHours, FILLED, UNFILLED, DAYS_ARR } from "./hours";
 import Day from "./Day.jsx";
@@ -7,12 +8,20 @@ import { Section, SectionInner, SectionHeader } from "../shared_styles";
 import { dummy_categories, dummy_week_data } from "../data";
 import styled from "styled-components";
 import { drawAxis } from "../axis";
+import { Nav } from "../Nav";
+import { ROUTES } from "../App";
 
 
-export function InputHours({ category_palette, setWeekData, week_data, highlight_missing_data }) {
+export function InputHours({ category_palette, setWeekData, week_data }) {
     // week_data = dummy_week_data;
     // category_palette = dummy_categories;
     const [category_label_width, setCategoryLabelWidth] = useState(null);
+    const [highlight_missing_data, setHighlightMissingData] = useState(false);
+    const navigate = useNavigate();
+    const handleBack = () => navigate(ROUTES.INPUT_CATEGORIES);
+
+
+
     const $canvas = useRef(null);
     const window_height = window.innerHeight;
 
@@ -41,28 +50,40 @@ export function InputHours({ category_palette, setWeekData, week_data, highlight
         drawAxis(ctx, (canvas_width * 2) - 160, (window_height - 350) * 2, (80 + (category_label_width * 2)), 700);
     }, [category_label_width, canvas_width, window_height]);
 
-    // const handleNext = useCallback(()=> {
+    const handleNext = useCallback(()=> {
 
-    //     // if data missing then highlight missing bits in tabs
-    //     const aggregates_for_each_day = week_data.map((day_obj)=> {
-    //         return Object.values(day_obj.aggregate);
-    //     });
-    //     const data_missing = aggregates_for_each_day.flat().includes(UNFILLED);
+        // if data missing then highlight missing bits in tabs
+        const aggregates_for_each_day = week_data.map((day_obj)=> {
+            return Object.values(day_obj.aggregate);
+        });
+        const data_missing = aggregates_for_each_day.flat().includes(UNFILLED);
 
-    //     if (data_missing){
-    //         // highlight missing bits in tabs
-    //         setHighlightMissingData(true);
-    //     }else {
-    //         // navigate to next page
+        if (data_missing){
+            // highlight missing bits in tabs
+            setHighlightMissingData(true);
+        }else {
+            // navigate to next page
+            navigate(ROUTES.FINAL_VIZ);
 
+        }
+    }, [week_data]);
 
-    //     }
-    // }, [week_data]);
-
-
+    useEffect(()=>{
+        if (highlight_missing_data){
+            setTimeout(()=>{
+                setHighlightMissingData(false);
+            }, 100);
+        }
+    }, [highlight_missing_data]);
     return (
 
         <Section>
+            <Nav
+                show_back={true}
+                show_next={true}
+                handleBack={handleBack}
+                handleNext={handleNext}
+            />
             <SectionHeader>TIMESHEET</SectionHeader>
             {category_label_width && <canvas
                 ref={$canvas}
@@ -104,12 +125,3 @@ export function InputHours({ category_palette, setWeekData, week_data, highlight
 }
 
 
-const Button = styled.button`
-font-size: 20px;
-border: 1px solid;
-margin: 50px;
-padding: 50px;
-background: none;
-cursor: pointer
-
-`;

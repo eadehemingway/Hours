@@ -6,62 +6,31 @@ import { InputHours } from "./InputHours";
 import { FinalViz } from "./Final";
 import { Nav } from "./Nav";
 import { createDay, fillHours, emptyHours, FILLED, UNFILLED, DAYS_ARR } from "./InputHours/hours";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import { PAGES } from "./data";
 
-
+export const ROUTES = { HOME: "/", DESCRIPTION: "/description", INPUT_CATEGORIES: "/input-categories", INPUT_HOURS: "/input-hours", FINAL_VIZ: "/final-viz" };
 function App() {
     const [category_palette, setCategoryPalette] = useState([]);
     const [week_data, setWeekData] = useState();
-    const [current_page_index, setCurrentPageIndex] = useState(0);
-    const [highlight_missing_data, setHighlightMissingData] = useState(false); // for input_hours page, had to lift it so we could update when pressing next
-
-    const PAGE_COMPONENTS = {
-        [PAGES[0]]: <Homepage />,
-        [PAGES[1]]: <Description />,
-        [PAGES[2]]: <InputCategories setCategoryPalette={setCategoryPalette} />,
-        [PAGES[3]]: <InputHours category_palette={category_palette} setWeekData={setWeekData} week_data={week_data} highlight_missing_data={highlight_missing_data} />,
-        [PAGES[4]]: <FinalViz category_palette={category_palette} week_data={week_data} />
-    };
-    const PageComponent = PAGE_COMPONENTS[PAGES[current_page_index]];
-
-
-    function handleNext(){
-        const is_input_hours_page = current_page_index === 3;
-        if (is_input_hours_page){
-            const aggregates_for_each_day = week_data.map((day_obj)=> Object.values(day_obj.aggregate));
-            const data_missing = aggregates_for_each_day.flat().includes(UNFILLED);
-
-            if (data_missing){
-                setHighlightMissingData(true);
-                return;
-            }
-        }
-        setCurrentPageIndex(current_page_index + 1);
-    }
-
-    useEffect(()=>{
-        if (highlight_missing_data){
-            setTimeout(()=>{
-                setHighlightMissingData(false);
-            }, 100);
-        }
-    }, [highlight_missing_data]);
-
-
-    function handleBack(){
-        setCurrentPageIndex(current_page_index - 1);
-    }
 
     return (
         <div>
-            <Nav
-                current_page_index={current_page_index}
-                handleBack={handleBack}
-                handleNext={handleNext}
-            />
-            {PageComponent}
+
+            <BrowserRouter>
+                <div className="app">
+                    <Routes>
+                        <Route exact path={ROUTES.HOME} element={<Homepage/>}/>
+                        <Route exact path={ROUTES.DESCRIPTION} element={<Description/>}/>
+                        <Route exact path={ROUTES.INPUT_CATEGORIES} element={<InputCategories setCategoryPalette={setCategoryPalette} />}/>
+                        <Route exact path={ROUTES.INPUT_HOURS} element={<InputHours category_palette={category_palette} setWeekData={setWeekData} week_data={week_data} />}/>
+                        <Route exact path={ROUTES.FINAL_VIZ} element={<FinalViz category_palette={category_palette} week_data={week_data} />}/>
+
+                    </Routes>
+                </div>
+            </BrowserRouter>
+
 
         </div>
     );
