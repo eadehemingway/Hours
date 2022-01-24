@@ -7,13 +7,11 @@ import styled from "styled-components";
 export  function Row(props) {
     let $category_label = useRef(null);
 
-
     useEffect(()=>{
         if (!$category_label.current) return null;
         const category_label_width = $category_label.current.clientWidth;
         props.setCategoryLabelWidth(category_label_width); // this is so that we can work out how big the canvas for the axes is
     }, []);
-
 
     return (
         <React.Fragment key={props.cat.category}>
