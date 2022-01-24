@@ -9,10 +9,9 @@ import styled from "styled-components";
 import { drawAxis } from "../axis";
 
 
-export function InputHours({ category_palette, setWeekData, week_data }) {
+export function InputHours({ category_palette, setWeekData, week_data, highlight_missing_data }) {
     // week_data = dummy_week_data;
     // category_palette = dummy_categories;
-    const [highlight_missing_data, setHighlightMissingData] = useState(false);
     const [category_label_width, setCategoryLabelWidth] = useState(null);
     const $canvas = useRef(null);
     const window_height = window.innerHeight;
@@ -42,23 +41,23 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
         drawAxis(ctx, (canvas_width * 2) - 160, (window_height - 350) * 2, (80 + (category_label_width * 2)), 700);
     }, [category_label_width, canvas_width, window_height]);
 
-    const handleNext = useCallback(()=> {
+    // const handleNext = useCallback(()=> {
 
-        // if data missing then highlight missing bits in tabs
-        const aggregates_for_each_day = week_data.map((day_obj)=> {
-            return Object.values(day_obj.aggregate);
-        });
-        const data_missing = aggregates_for_each_day.flat().includes(UNFILLED);
+    //     // if data missing then highlight missing bits in tabs
+    //     const aggregates_for_each_day = week_data.map((day_obj)=> {
+    //         return Object.values(day_obj.aggregate);
+    //     });
+    //     const data_missing = aggregates_for_each_day.flat().includes(UNFILLED);
 
-        if (data_missing){
-            // highlight missing bits in tabs
-            setHighlightMissingData(true);
-        }else {
-            // navigate to next page
+    //     if (data_missing){
+    //         // highlight missing bits in tabs
+    //         setHighlightMissingData(true);
+    //     }else {
+    //         // navigate to next page
 
 
-        }
-    }, [week_data]);
+    //     }
+    // }, [week_data]);
 
 
     return (
@@ -83,7 +82,6 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
                                 i={i}
                                 key={i}
                                 highlight_missing_data={highlight_missing_data}
-                                setHighlightMissingData={setHighlightMissingData}
                             />)}
                     </Tab.List>
 
@@ -100,7 +98,6 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
                         ))}
                     </Tab.Panels>
                 </Tab.Group>
-                <Button onClick={handleNext}>NEXT</Button>
             </SectionInner>}
         </Section>
     );

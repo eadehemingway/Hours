@@ -4,15 +4,7 @@ import { Tab } from "@headlessui/react";
 import styled from "styled-components";
 import { SelectedTab, UnselectedTab } from "../shared_styles";
 
-export function TabLabel({ day_label, week_data, i, width, highlight_missing_data, setHighlightMissingData }) {
-
-    useEffect(()=>{
-        if (highlight_missing_data){
-            setTimeout(()=>{
-                setHighlightMissingData(false);
-            }, 100);
-        }
-    }, [highlight_missing_data]);
+export function TabLabel({ day_label, week_data, i, width, highlight_missing_data }) {
 
     return (
         <Tab as={React.Fragment}>

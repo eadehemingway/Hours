@@ -2,20 +2,12 @@ import styled from "styled-components";
 import { PAGES } from "./data";
 
 
-export function Nav({ current_page_index, setCurrentPageIndex }) {
+export function Nav({ current_page_index, handleBack, handleNext }) {
 
     const show_next = current_page_index !== PAGES.length-1;
     const show_back = current_page_index !== 0;
 
 
-    function handleNext(){
-        setCurrentPageIndex(current_page_index + 1);
-
-    }
-
-    function handleBack(){
-        setCurrentPageIndex(current_page_index - 1);
-    }
     return (
         <NavWrapper>
             <NavButton visible={show_back} onClick={handleBack}>back</NavButton>

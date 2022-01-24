@@ -4,19 +4,19 @@ import { useEffect, useRef, useState } from "react";
 import { Section, SectionHeader } from "../shared_styles";
 import { dummy_week_data, dummy_categories } from "../data";
 import { drawAxis } from "../axis";
-import grain_2 from '../wood_grain-02.jpg';
-import grain_3 from '../wood_grain-03.jpg';
-import grain_4 from '../wood_grain-04.jpg';
-import grain_5 from '../wood_grain-05.jpg';
-import grain_6 from '../wood_grain-06.jpg';
-import grain_7 from '../wood_grain-07.jpg';
-import grain_8 from '../wood_grain-08.jpg';
-import grain_9 from '../wood_grain-09.jpg';
+import grain_2 from "../wood_grain-02.jpg";
+import grain_3 from "../wood_grain-03.jpg";
+import grain_4 from "../wood_grain-04.jpg";
+import grain_5 from "../wood_grain-05.jpg";
+import grain_6 from "../wood_grain-06.jpg";
+import grain_7 from "../wood_grain-07.jpg";
+import grain_8 from "../wood_grain-08.jpg";
+import grain_9 from "../wood_grain-09.jpg";
 
 export  function FinalViz({ week_data, category_palette }) {
 
-    week_data = dummy_week_data; // for dev
-    category_palette = dummy_categories; // for dev
+    // week_data = dummy_week_data; // for dev
+    // category_palette = dummy_categories; // for dev
 
     const [main_data, setMainData] = useState();
     const [accumulation_data, setAccumulationData] = useState(); // we can use to do accu
