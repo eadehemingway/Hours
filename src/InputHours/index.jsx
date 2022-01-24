@@ -14,7 +14,7 @@ import { ROUTES } from "../App";
 
 export function InputHours({ category_palette, setWeekData, week_data }) {
     // week_data = dummy_week_data;
-    // category_palette = dummy_categories;
+    category_palette = dummy_categories;
     const [category_label_width, setCategoryLabelWidth] = useState(null);
     const [highlight_missing_data, setHighlightMissingData] = useState(false);
     const navigate = useNavigate();
