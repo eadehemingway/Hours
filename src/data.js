@@ -51,15 +51,7 @@ export const preset_category_palettes = [
     }
 ];
 
-// export const dummy_categories = ["Work", "Sleep", "Tasks", "Socialising", "Learning", "Making"];
-export const dummy_categories = [
-    { category:"Work", description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-    { category:"Sleep", description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-    { category:"Tasks", description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-    { category: "Socialising",description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-    { category: "Learning",description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-    { category:  "Making",description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-];
+export const dummy_categories = preset_category_palettes[0].categories;
 
 export const dummy_week_data =[
     {

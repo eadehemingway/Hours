@@ -22,7 +22,7 @@ export function createDay({ categories }) {
     return {
         categories: categories.map((c) => {
 
-            return { category: c.category, ...hours,  };
+            return { category: c.category, color: c.color, ...hours,  };
         }),
         aggregate: { ...hours },
     };

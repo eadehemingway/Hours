@@ -29,7 +29,6 @@ export function CategoryPalette({ palette_data, updatePalettes, palette_index, c
 
     useEffect(()=>{
         updatePalettes(palette_index, categories);
-        console.log('categories:', categories);
     }, [categories]);
 
     return (
