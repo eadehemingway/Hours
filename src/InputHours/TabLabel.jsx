@@ -39,7 +39,7 @@ const Label = styled.p`
 
 const ProgressHour = styled.div`
     height: 100%;
-    width: 4%;
+    width: 4.1666666667%;
     background:${props=> props.filled ? "rgba(0,0,0,0.05)": "rgba(0,0,0,0)"}
 `;
 
