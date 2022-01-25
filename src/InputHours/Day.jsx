@@ -63,7 +63,6 @@ export default function Day({ day_data, day_index, updateDay, setCategoryLabelWi
 
     }
 
-
     return (
         <div>
             <DayGrid>
@@ -71,6 +70,7 @@ export default function Day({ day_data, day_index, updateDay, setCategoryLabelWi
                     <Row
                         cat={cat}
                         key={i}
+                        color={cat.color}
                         startDragging={startDragging}
                         onDraggedOver={onDraggedOver}
                         endDragging={endDragging}
