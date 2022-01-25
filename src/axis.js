@@ -77,7 +77,6 @@ function inQuad(n) {
   }
 
 export function drawAxis(ctx, width, height, x, y) {
-    console.log('drawAxis:');
     if (!width || !height || isNaN(x) || isNaN(y)) {
         console.warn("Axis not drawn");
         return;
@@ -87,11 +86,12 @@ export function drawAxis(ctx, width, height, x, y) {
     const y_space_for_labels = 30;
     let axis_lines = width <= 400 ? lines.filter((d, i) => i % 2 == 0) : lines;
 
+    const line_variation = 40;
     const y1 = y + height;
-    const y2 = y + y_space_for_labels;
+    const y2 = y - line_variation;
     const x1 = x;
     const long_line_length = (y2 - y1);
-    const short_line_length = long_line_length + 40;
+    const short_line_length = long_line_length + line_variation;
 
     const lines_count = axis_lines.length;
     const duration_per_line = 2000;

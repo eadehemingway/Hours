@@ -63,7 +63,7 @@ const Cell = styled.div`
         background-color: ${({ is_already_filled, is_pending, color })=>{
         if (is_pending) return color + "1)";
         if (is_already_filled && !is_pending) return color + "1)";
-        else return "#E0DACE";
+        else return "rgba(0,0,0,0.05)";
     }};
         background-blend-mode: hard-light;
         background-size: cover;

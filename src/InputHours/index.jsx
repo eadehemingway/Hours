@@ -19,13 +19,21 @@ export function InputHours({ category_palette, setWeekData, week_data, colors })
     const [highlight_missing_data, setHighlightMissingData] = useState(false);
     const navigate = useNavigate();
     const handleBack = () => navigate(ROUTES.INPUT_CATEGORIES);
+    const canvas_width = document.body.clientWidth;
+    const canvas_height = window.innerHeight;
+    const section_padding = 100;
+    const table_height = 400;
+    const axis_height = table_height;
+    const axis_top = canvas_height - (section_padding + table_height);
 
     const $canvas = useRef(null);
-    const window_height = window.innerHeight;
 
-    const canvas_width = useMemo(()=>{
-        const window_width = document.body.clientWidth;
-        return window_width - category_label_width;
+    const axis_width = useMemo(()=>{
+        return canvas_width - (category_label_width + (section_padding * 2));
+    }, [category_label_width]);
+
+    const axis_left = useMemo(()=>{
+        return category_label_width + section_padding;
     }, [category_label_width]);
 
     function updateDay(index, new_day_data) {
@@ -44,9 +52,10 @@ export function InputHours({ category_palette, setWeekData, week_data, colors })
         if (!$canvas.current) return;
         if (!category_label_width) return;
         const ctx = $canvas.current.getContext("2d");
-        ctx.clearRect(0, 0, (canvas_width * 2) - 160, (window_height - 350) * 2);
-        drawAxis(ctx, (canvas_width * 2) - 160, (window_height - 350) * 2, (80 + (category_label_width * 2)), 700);
-    }, [category_label_width, canvas_width, window_height]);
+        ctx.clearRect(0, 0, canvas_width, canvas_height);
+        ctx.scale(2, 2);
+        drawAxis(ctx, axis_width, axis_height, axis_left, axis_top);
+    }, [category_label_width, canvas_width, canvas_height]);
 
     const handleNext = useCallback(()=> {
 
@@ -80,14 +89,14 @@ export function InputHours({ category_palette, setWeekData, week_data, colors })
             <SectionHeader>TIMESHEET</SectionHeader>
             {category_label_width && <canvas
                 ref={$canvas}
-                width={`${canvas_width* 2}px`}
-                height={`${window_height * 2}px`}
-                style={{ zIndex: "3", pointerEvents: "none", position: "absolute", top: "0px", left: "0px", width: canvas_width + "px", height: window_height + "px" }}>
+                width={`${canvas_width * 2}px`}
+                height={`${canvas_height * 2}px`}
+                style={{ zIndex: "3", pointerEvents: "none", position: "absolute", top: "0px", left: "0px", width: canvas_width + "px", height: canvas_height + "px" }}>
             </canvas>}
             {week_data &&
-            <SectionInner>
+            <SectionInner style={{ position: "absolute", bottom: "0px", left: "0px" }}>
                 <Tab.Group>
-                    <Tab.List style={{ paddingBottom: "40px" }}>
+                    <Tab.List style={{ paddingBottom: "100px" }}>
                         {DAYS_ARR.map((day_label, i) =>
                             <TabLabel
                                 width={`calc(100% / ${DAYS_ARR.length})`}

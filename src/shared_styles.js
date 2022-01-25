@@ -11,13 +11,11 @@ width: 100%;
 min-height: 100vh;
 overflow: hidden;
 position: relative;
-
-
 `;
 
 export const SectionInner = styled.div`
-width: calc(100% - 80px);
-padding: 40px;
+width: calc(100% - 200px);
+padding: 80px 100px 100px 100px;
 `;
 
 export const SectionHeader = styled.h1`

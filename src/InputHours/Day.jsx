@@ -88,4 +88,5 @@ const DayGrid = styled.div`
   grid-template-columns: auto repeat(24, minmax(0, 1fr));
   grid-auto-rows: minmax(10px, auto);
   height: 400px;
+  row-gap: 10px;
 `;
