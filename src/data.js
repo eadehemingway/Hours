@@ -1,36 +1,48 @@
-
+export const colors_array = [
+    `rgba(29,7,126,`, // Blue: CIE 15 Lightness
+    `rgba(220,60,7,`, // Red: CIE 50 Lightness
+    `rgba(252,206,106,`, // Yellow: CIE 85 Lightness
+    `rgba(7,77,101,`, // Dark Green: CIE 30 Lightness
+    `rgba(250,220,217,`, // Pink: CIE 90 Lightness
+    `rgba(107,79,160,`, // Purple: CIE 40 Lightness
+    `rgba(49,164,108,`, // Green: 60 CIE Lightness
+    `rgba(254,143,6,`, // Orange: 70 CIE Lightness
+    `rgba(254,143,6,`, // Orange: 70 CIE Lightness
+    `rgba(254,143,6,`, // Orange: 70 CIE Lightness
+    `rgba(254,143,6,`, // Orange: 70 CIE Lightness
+];
 
 export const preset_category_palettes = [
     {
         palette: "General",
         categories: [
-            { category: "Work", editable: false, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Sleep", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Tasks", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Socialising", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Learning", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Making", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
+            { category: "Work", editable: false, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[0] },
+            { category: "Sleep", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[1] },
+            { category: "Tasks", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[2] },
+            { category: "Socialising", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[3] },
+            { category: "Learning", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[4] },
+            { category: "Making", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[5] },
         ]
     },
     {
         palette: "Making",
         categories: [
-            { category: "Planning project", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Sourcing materials", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Actually making", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Stuff that stimulates", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "No creative value", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " }
+            { category: "Planning project", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[0] },
+            { category: "Sourcing materials", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[1] },
+            { category: "Actually making", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[2] },
+            { category: "Stuff that stimulates", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[3] },
+            { category: "No creative value", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[4] }
         ]
     },
     {
         palette: "Mood",
         categories: [
-            { category: "Neutral", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Anxious", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Sad", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Content", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Stimulated", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " },
-            { category: "Drained", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " }
+            { category: "Neutral", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[0] },
+            { category: "Anxious", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[1] },
+            { category: "Sad", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[2] },
+            { category: "Content", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[3] },
+            { category: "Stimulated", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[4] },
+            { category: "Drained", editable: false , description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ", color: colors_array[5] }
         ]
     },
     {

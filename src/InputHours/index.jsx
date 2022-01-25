@@ -12,7 +12,7 @@ import { Nav } from "../Nav";
 import { ROUTES } from "../App";
 
 
-export function InputHours({ category_palette, setWeekData, week_data }) {
+export function InputHours({ category_palette, setWeekData, week_data, colors }) {
     // week_data = dummy_week_data;
     category_palette = dummy_categories;
     const [category_label_width, setCategoryLabelWidth] = useState(null);
@@ -82,7 +82,7 @@ export function InputHours({ category_palette, setWeekData, week_data }) {
                 ref={$canvas}
                 width={`${canvas_width* 2}px`}
                 height={`${window_height * 2}px`}
-                style={{ pointerEvents: "none", position: "absolute", top: "0px", left: "0px", width: canvas_width + "px", height: window_height + "px" }}>
+                style={{ zIndex: "3", pointerEvents: "none", position: "absolute", top: "0px", left: "0px", width: canvas_width + "px", height: window_height + "px" }}>
             </canvas>}
             {week_data &&
             <SectionInner>

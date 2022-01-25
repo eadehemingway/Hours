@@ -8,6 +8,7 @@ import { useState } from "react/cjs/react.development";
 export function CategoryItem({ category_obj, editCategory, removeCategory, category_index }) {
     const [category_title, setCategoryTitle] = useState("");
     const [category_description, setCategoryDescription] = useState("");
+    const [category_color, setCategoryColor] = useState("");
     const ref = useRef(null);
 
     useEffect(() => {
@@ -18,16 +19,17 @@ export function CategoryItem({ category_obj, editCategory, removeCategory, categ
     useEffect(()=>{
         setCategoryTitle(category_obj.category);
         setCategoryDescription(category_obj.description);
+        setCategoryColor(category_obj.color);
     }, [category_obj]);
 
     function handleInput(d) {
         if (d.charCode === 13) {
-            editCategory(category_index, { category: category_title, editable: true, description: category_description });
+            editCategory(category_index, { category: category_title, editable: true, description: category_description, color: category_color });
         }
     }
 
     function handleBlur(d) {
-        editCategory(category_index, { category:category_title, editable: true , description: category_description });
+        editCategory(category_index, { category:category_title, editable: true , description: category_description, color: category_color });
     }
     function handleRemove(){
         removeCategory(category_index);

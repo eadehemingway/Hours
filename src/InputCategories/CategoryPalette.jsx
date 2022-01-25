@@ -5,7 +5,7 @@ import { CategoryTile } from "./CategoryItem";
 import { PlusIcon } from "./PlusIcon";
 
 
-export function CategoryPalette({ palette_data, updatePalettes, palette_index }) {
+export function CategoryPalette({ palette_data, updatePalettes, palette_index, colors }) {
     const [categories, setCategories] = useState(palette_data.categories);
 
     function editCategory(category_index, obj){
@@ -22,12 +22,14 @@ export function CategoryPalette({ palette_data, updatePalettes, palette_index })
 
     function addNewCategory(){
         const new_category_list = [...categories];
-        new_category_list.push({ category: "", editable: true, description: "" });
+        const new_index = categories.length + 1;
+        new_category_list.push({ category: "", editable: true, description: "", color: colors[new_index] });
         setCategories(new_category_list);
     }
 
     useEffect(()=>{
         updatePalettes(palette_index, categories);
+        console.log('categories:', categories);
     }, [categories]);
 
     return (

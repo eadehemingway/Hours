@@ -10,7 +10,7 @@ import { Nav } from "../Nav";
 import { ROUTES } from "../App";
 
 
-export function InputCategories({ setCategoryPalette }) {
+export function InputCategories({ setCategoryPalette, colors }) {
     const [category_palettes, setCategoryPalettes] = useState(preset_category_palettes);
     const [selected_palette, setSelectedPalette] = useState(preset_category_palettes[0]);
     const navigate = useNavigate();
@@ -57,7 +57,7 @@ export function InputCategories({ setCategoryPalette }) {
                                     updatePalettes={updatePalettes}
                                     palette_index={i}
                                     palette_data ={palette_data}
-
+                                    colors={colors}
                                 />
                             </Tab.Panel>
                         ))}
