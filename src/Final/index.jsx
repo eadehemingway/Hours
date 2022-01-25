@@ -75,6 +75,7 @@ export  function FinalViz({ week_data, category_palette }) {
                     week_data.forEach((day_data, day_index)=>{
                         drawRow(ctx, day_index, day_data);
                     });
+                    drawAxis(ctx, window_width - (chart_margin_left * 2), window_height - (chart_margin_top * 2), chart_margin_left, chart_margin_top);
                 }
             };
             img.src = img_sources[i];
@@ -95,7 +96,6 @@ export  function FinalViz({ week_data, category_palette }) {
         let block_opacity = opacity || 1;
         let categories = category_palette.map(d => d.category);
         const index = categories.findIndex(c => c == category);
-        console.log('index:', index);
         const colors = [
             `rgba(29,7,126,${block_opacity})`, // Blue: CIE 15 Lightness
             `rgba(220,60,7,${block_opacity})`, // Red: CIE 50 Lightness
@@ -131,7 +131,6 @@ export  function FinalViz({ week_data, category_palette }) {
         ctx.fillStyle = color;
         ctx.fillRect(x, y, square_size, square_size);
         ctx.restore();
-        drawAxis(ctx, window_width - (chart_margin_left * 2), window_height - (chart_margin_top * 2), chart_margin_left, chart_margin_top);
     }
 
     function drawRow(ctx, day_index, day_data){

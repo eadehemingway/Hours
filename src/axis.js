@@ -69,7 +69,15 @@ function inQuad(n) {
   };
 
 
+  function drawCircle(ctx, x, y, radius, colour) {
+    ctx.fillStyle = colour;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 2 * Math.PI, false);
+    ctx.fill();
+  }
+
 export function drawAxis(ctx, width, height, x, y) {
+    console.log('drawAxis:');
     if (!width || !height || isNaN(x) || isNaN(y)) {
         console.warn("Axis not drawn");
         return;
@@ -78,14 +86,6 @@ export function drawAxis(ctx, width, height, x, y) {
     let start;
     const y_space_for_labels = 30;
     let axis_lines = width <= 400 ? lines.filter((d, i) => i % 2 == 0) : lines;
-    axis_lines = axis_lines.map(d => ({ hour: d, completed: false }));
-    const lines_count = (axis_lines.length - 1);
-    const hour_width = width / lines_count;
-
-    const delay_per_line = 50;
-    const duration_per_line = 600;
-    const delay_total = (delay_per_line * lines_count);
-    const duration_total = duration_per_line + delay_total;
 
     const y1 = y + height;
     const y2 = y + y_space_for_labels;
@@ -93,48 +93,75 @@ export function drawAxis(ctx, width, height, x, y) {
     const long_line_length = (y2 - y1);
     const short_line_length = long_line_length + 40;
 
-    function drawLines(timestamp) {
+    const lines_count = axis_lines.length;
+    const duration_per_line = 2000;
+    const delay_per_line = 100;
+    const duration_total = duration_per_line + (delay_per_line * lines_count);
+    const hour_width = width / (lines_count - 1);
 
+    axis_lines = axis_lines.map(function(d, i){
+      let midnight = i === 0 || i === (lines_count - 1);
+      let midday = d === 12 && !midnight;
+      let line_length = midnight || midday ? long_line_length : short_line_length;
+      let icon_path = null;
+      if (midnight) icon_path = moon_path;
+      if (midday) icon_path = sun_path;
+
+      return ({
+        hour: d,
+        completed: false,
+        start_time: ((delay_per_line * i) / duration_total),
+        end_time: (((delay_per_line * i) + duration_per_line) / duration_total),
+        length: line_length,
+        x1: x + (hour_width * i),
+        icon_path: icon_path,
+      });
+    });
+
+    function drawVerticals(timestamp) {
         if (!start) start = timestamp;
         let time_elapsed = timestamp - start;
+        let progress_total = outSine(time_elapsed / duration_total); // 0 start, 1 finish
 
         axis_lines.forEach((d, i) => {
-            if (d.completed) return;
-            let delay = ((lines_count - i) * delay_per_line) / duration_total;
-            let decimal_elapsed = inQuad(Math.min(time_elapsed / duration_total + delay, 1)); // 0 start, 1 finish
-            let x = x1 + (hour_width * i);
-            let midnight = i === 0 || i === lines_count;
-            let midday = d.hour === 12 && !midnight;
-            let line_length = midnight || midday ? long_line_length : short_line_length;
-            let addition = line_length * decimal_elapsed;
-
+          let duration = d.end_time - d.start_time;
+          d.progress = (progress_total - d.start_time) / duration; // 0 start, 1 finish
+          if (d.progress >= 0 && d.progress <= 1) {
             ctx.beginPath();
-            ctx.moveTo(x, y1);
-            ctx.lineTo(x, y1 + addition);
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = "#000000";
+            ctx.moveTo(d.x1, y1 + (d.prev_progress) * d.length);
+            ctx.lineTo(d.x1, y1 + (d.progress) * d.length);
+            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(0, 0, 0, ${Math.max(0.3, Math.min(0.5, Math.random()))})`;
             ctx.stroke();
+          }
+          d.prev_progress = d.progress;
 
-            if (decimal_elapsed >= 1 && !d.completed) {
-                if (midday || midnight) {
-                    ctx.save();
-                    ctx.translate(x - (icon_size / 2), (y1 + addition) - (icon_size * 1.5));
-                    const icon = new Path2D(midday ? sun_path : moon_path);
-                    ctx.fill(icon);
-                    ctx.restore();
-                } else {
-                    ctx.textAlign = "center";
-                    ctx.fillText(d.hour, x, (y1 + addition) - 10);
-                }
-                d.completed = true;
+          if (d.progress >= 1 && !d.completed) {
+            if (d.icon_path) {
+                ctx.save();
+                ctx.translate(d.x1 - (icon_size / 2), (y1 + d.length) - (icon_size * 1.5));
+                const icon = new Path2D(d.icon_path);
+                ctx.fill(icon);
+                ctx.restore();
+            } else {
+                ctx.textAlign = "center";
+                ctx.fillText(d.hour, d.x1, (y1 + d.length) - 10);
             }
+            d.completed = true;
+          }
         });
+
+        // let decimal_elapsed = (Math.min(time_elapsed / duration_total, 1)); // 0 start, 1 finish
+        // let x = x1 + (hour_width * i);
+        // let addition = line_length * decimal_elapsed;
+        // let prev_addition = line_length * prev_decimal_elapsed;
+      // });
 
         if (time_elapsed < duration_total) {
           ctx.font = '16px';
-            window.requestAnimationFrame(drawLines);
+          window.requestAnimationFrame(drawVerticals);
         }
     }
 
-    font.load().then(window.requestAnimationFrame(drawLines));
+    font.load().then(window.requestAnimationFrame(drawVerticals));
 }
