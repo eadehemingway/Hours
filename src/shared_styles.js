@@ -1,6 +1,7 @@
 
 import styled from "styled-components";
 
+import paint_texture from "./paint_texture.png";
 export let section_colour = "#fffaf3";
 export let darker_shade = "#fff3de";
 export let lighter_shade = "#fffaf3";
@@ -11,6 +12,8 @@ width: 100%;
 min-height: 100vh;
 overflow: hidden;
 position: relative;
+background: url(${paint_texture});
+background-size: cover;
 `;
 
 export const SectionInner = styled.div`
@@ -32,6 +35,7 @@ margin: 0px;
 margin-left: 50px;
 position: relative;
 z-index: 4;
+display: none;
 `;
 
 export const SectionHeaderGrand = styled(SectionHeader)`

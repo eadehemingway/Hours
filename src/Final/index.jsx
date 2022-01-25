@@ -16,6 +16,7 @@ import grain_9 from "../wood_grain-09.jpg";
 import { Nav } from "../Nav";
 import { ROUTES } from "../App";
 import { section_colour } from "../shared_styles";
+import paint_texture from "../paint_texture.png";
 
 
 export  function FinalViz({ week_data, category_palette, colors }) {
@@ -69,7 +70,11 @@ export  function FinalViz({ week_data, category_palette, colors }) {
         ctx.scale(2, 2);
         ctx.clearRect(0, 0, canvas_width, canvas_height);
         ctx.fillStyle = section_colour;
-        ctx.fillRect(0, 0, canvas_width, canvas_height);
+        let background_img = new Image();
+        background_img.onload = function() {
+            ctx.drawImage(background_img, 0, 0, canvas_width, canvas_height);
+        };
+        background_img.src = paint_texture;
         let img_load_count = 0;
         let img_count = img_sources.length;
 
