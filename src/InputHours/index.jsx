@@ -52,8 +52,8 @@ export function InputHours({ category_palette, setWeekData, week_data, colors })
         if (!$canvas.current) return;
         if (!category_label_width) return;
         const ctx = $canvas.current.getContext("2d");
-        ctx.clearRect(0, 0, canvas_width, canvas_height);
         ctx.scale(2, 2);
+        ctx.clearRect(0, 0, canvas_width, canvas_height);
         drawAxis(ctx, axis_width, axis_height, axis_left, axis_top);
     }, [category_label_width, canvas_width, canvas_height]);
 

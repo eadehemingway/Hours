@@ -21,7 +21,7 @@ visibility: ${({ visible })=> visible? "visible": "hidden"}
 const NavWrapper = styled.div`
 position:fixed;
 top:0;
-z-index: 1;
+z-index: 6;
 display: flex;
 justify-content: space-between;
 width: 100%;

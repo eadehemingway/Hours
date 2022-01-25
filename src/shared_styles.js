@@ -1,7 +1,7 @@
 
 import styled from "styled-components";
 
-let section_colour = "#fff6eb";
+export let section_colour = "#fffaf3";
 export let darker_shade = "#fff3de";
 export let lighter_shade = "#fffaf3";
 
@@ -30,6 +30,8 @@ color: black;
 padding-top: 40px;
 margin: 0px;
 margin-left: 50px;
+position: relative;
+z-index: 4;
 `;
 
 export const SectionHeaderGrand = styled(SectionHeader)`

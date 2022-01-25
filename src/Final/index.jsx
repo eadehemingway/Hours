@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { Section, SectionHeader } from "../shared_styles";
+import { Section, SectionHeader, SectionInner } from "../shared_styles";
 import { dummy_week_data, dummy_categories } from "../data";
 import { drawAxis } from "../axis";
 import grain_2 from "../wood_grain-02.jpg";
@@ -15,6 +15,7 @@ import grain_8 from "../wood_grain-08.jpg";
 import grain_9 from "../wood_grain-09.jpg";
 import { Nav } from "../Nav";
 import { ROUTES } from "../App";
+import { section_colour } from "../shared_styles";
 
 
 export  function FinalViz({ week_data, category_palette, colors }) {
@@ -27,13 +28,18 @@ export  function FinalViz({ week_data, category_palette, colors }) {
     const navigate = useNavigate();
     const handleBack = () => navigate(ROUTES.INPUT_HOURS);
 
-    const window_width = document.body.clientWidth;
-    const window_height = window.innerHeight;
     const img_sources = [grain_2, grain_3, grain_4, grain_5, grain_6, grain_7, grain_8, grain_9];
     let imgs = [];
-    const chart_margin_left = 300;
-    const chart_margin_top = 200;
-    const square_size = (window_width - (chart_margin_left * 2)) / 24;
+
+    const section_padding = 100;
+    const canvas_width = document.body.clientWidth;
+    const square_size = (canvas_width - (section_padding * 2)) / 24;
+    const canvas_height = window.innerHeight;
+    const axis_height = square_size * 7;
+    const axis_width = canvas_width - (section_padding * 2);
+    const axis_left = section_padding;
+    const axis_top = canvas_height - (section_padding + axis_height);
+
 
     useEffect(()=>{
         if (!week_data) return;
@@ -60,8 +66,10 @@ export  function FinalViz({ week_data, category_palette, colors }) {
         if (!$canvas.current) return;
         if (!week_data) return;
         const ctx = $canvas.current.getContext("2d");
-        ctx.clearRect(0, 0, window_width, window_height);
         ctx.scale(2, 2);
+        ctx.clearRect(0, 0, canvas_width, canvas_height);
+        ctx.fillStyle = section_colour;
+        ctx.fillRect(0, 0, canvas_width, canvas_height);
         let img_load_count = 0;
         let img_count = img_sources.length;
 
@@ -74,7 +82,7 @@ export  function FinalViz({ week_data, category_palette, colors }) {
                     week_data.forEach((day_data, day_index)=>{
                         drawRow(ctx, day_index, day_data);
                     });
-                    drawAxis(ctx, window_width - (chart_margin_left * 2), window_height - (chart_margin_top * 2), chart_margin_left, chart_margin_top);
+                    drawAxis(ctx, axis_width, axis_height, axis_left, axis_top);
                 }
             };
             img.src = img_sources[i];
@@ -108,7 +116,7 @@ export  function FinalViz({ week_data, category_palette, colors }) {
         const rotations = [0, 90, 180, 270];
         const rotation_index = getRandomBetween(0, rotations.length);
 
-        x = x + chart_margin_left;
+        x = x + section_padding;
         y = y + 0;
         let half_square = square_size / 2;
         ctx.save();
@@ -126,13 +134,14 @@ export  function FinalViz({ week_data, category_palette, colors }) {
         let aggregate = day_data.aggregate;
         for (const hour in aggregate) {
             let opacity = Math.max(0.8, Math.random());
-            drawBlock(ctx, hour * square_size, (day_index * square_size) + (chart_margin_top + 200), getColor(aggregate[hour], opacity));
+            drawBlock(ctx, hour * square_size, (day_index * square_size) + axis_top, getColor(aggregate[hour], opacity));
         }
     }
 
 
     return (
         <Section>
+            <SectionInner>
             <Nav
                 show_back={true}
                 show_next={false}
@@ -142,17 +151,19 @@ export  function FinalViz({ week_data, category_palette, colors }) {
             <SectionHeader>HOURS</SectionHeader>
             {week_data && <canvas ref={$canvas}
                 id="myCanvas"
-                width={window_width * 2}
-                height={window_height * 2}
+                width={canvas_width * 2}
+                height={canvas_height * 2}
                 style={{
-                    width: `${window_width}px`,
-                    height: `${window_height}px`,
+                    width: `${canvas_width}px`,
+                    height: `${canvas_height}px`,
                     position: "absolute",
-                    bottom: "40px",
-                    left: "0px"
+                    top: "0px",
+                    left: "0px",
+                    zIndex: "0"
                 }}
             ></canvas>}
             <DownloadButton onClick={download}>Download</DownloadButton>
+            </SectionInner>
         </Section>
     );
 }

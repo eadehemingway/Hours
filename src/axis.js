@@ -81,6 +81,8 @@ export function drawAxis(ctx, width, height, x, y) {
         console.warn("Axis not drawn");
         return;
     }
+
+    ctx.fillStyle = "#000000";
     let font = new FontFace('goudy-old-style', 'url(https://use.typekit.net/af/4d44c2/00000000000000007735a6eb/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3)');
     let start;
     const y_space_for_labels = 30;
@@ -119,6 +121,7 @@ export function drawAxis(ctx, width, height, x, y) {
     });
 
     function drawVerticals(timestamp) {
+
         if (!start) start = timestamp;
         let time_elapsed = timestamp - start;
         let progress_total = outSine(time_elapsed / duration_total); // 0 start, 1 finish
