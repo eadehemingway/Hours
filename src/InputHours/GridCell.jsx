@@ -65,7 +65,7 @@ const Cell = styled.div`
         if (is_already_filled && !is_pending) return color + "1)";
         else return "rgba(0,0,0,0.05)";
     }};
-        background-blend-mode: hard-light;
+        background-blend-mode: overlay;
         background-size: cover;
         background-image: ${({ is_already_filled, is_pending, texture })=>{
             if (is_pending) return `none`;

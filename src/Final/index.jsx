@@ -105,7 +105,8 @@ export  function FinalViz({ week_data, category_palette, colors }) {
 
 
     function getColor(category, opacity){
-        let block_opacity = opacity || 1;
+        // let block_opacity = opacity || 1;
+        let block_opacity = 1 || 1;
         let categories = category_palette.map(d => d.category);
         const index = categories.findIndex(c => c == category);
         return `${colors[index]} ${block_opacity})`;
@@ -128,9 +129,11 @@ export  function FinalViz({ week_data, category_palette, colors }) {
         ctx.translate(x + half_square, y + half_square);
         ctx.rotate(rotations[rotation_index] * Math.PI / 180);
         ctx.translate(-(x + half_square), -(y + half_square));
-        ctx.drawImage(imgs[img_source_index], x, y, square_size, square_size);
-        ctx.globalCompositeOperation = "hard-light"; // xor quite nice for faded blocks
+        // ctx.globalAlpha = 0.8;
+        // ctx.drawImage(imgs[img_source_index], x, y, square_size, square_size);
+        // ctx.globalCompositeOperation = "overlay"; // xor quite nice for faded blocks
         ctx.fillStyle = color;
+        // ctx.fillRect(x, y, square_size, square_size);
         ctx.fillRect(x, y, square_size, square_size);
         ctx.restore();
     }
@@ -139,7 +142,7 @@ export  function FinalViz({ week_data, category_palette, colors }) {
         let aggregate = day_data.aggregate;
         for (const hour in aggregate) {
             let opacity = Math.max(0.8, Math.random());
-            drawBlock(ctx, hour * square_size, (day_index * square_size) + axis_top, getColor(aggregate[hour], opacity));
+            drawBlock(ctx, hour * square_size, (day_index * square_size) + axis_top, getColor(aggregate[hour], 1));
         }
     }
 

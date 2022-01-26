@@ -1,9 +1,9 @@
 export const colors_array = [
-    `rgba(29,7,126,`, // Blue: CIE 15 Lightness
-    `rgba(220,60,7,`, // Red: CIE 50 Lightness
-    `rgba(252,206,106,`, // Yellow: CIE 85 Lightness
-    `rgba(7,77,101,`, // Dark Green: CIE 30 Lightness
-    `rgba(250,220,217,`, // Pink: CIE 90 Lightness
+    `rgba(220,0,0,`, // REd
+    `rgba(255,218,0,`, // Red: CIE 50 Lightness
+    `rgba(16,29,136,`, // Yellow: CIE 85 Lightness
+    `rgba(96,140,94,`, // Dark Green: CIE 30 Lightness
+    `rgba(235,182,135,`, // Pink: CIE 90 Lightness
     `rgba(107,79,160,`, // Purple: CIE 40 Lightness
     `rgba(49,164,108,`, // Green: 60 CIE Lightness
     `rgba(254,143,6,`, // Orange: 70 CIE Lightness
